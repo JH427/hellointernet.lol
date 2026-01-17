@@ -78,11 +78,6 @@ See TODO below.
 
 ---
 
-# 2. TODO (this matches your current state)
-
-You can append this directly under the README or keep it as a separate section.
-
-```md
 ## TODO
 
 ### Core (before anything goes live)
