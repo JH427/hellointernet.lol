@@ -1,0 +1,126 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Work with me - hellointernet.lol">
+  <div class="content-block">
+    <h1>Work with me</h1>
+
+    <div class="content">
+      <p>I work with people who recognize friction and want it removed.</p>
+      <p><em>Not managed.</em></p>
+      <p><strong>Gone.</strong></p>
+
+      <p>
+        This usually starts with something that’s slowing you down:
+        <ul>
+          <li>a messy process, a missing tool</li>
+          <li>a decision that needs structure</li>
+          <li>a system that’s quietly blocking progress</li>
+        </ul>
+      </p>
+
+      <p>
+        I help by building the thing that removes the constraint,
+        then stepping back.
+      </p>
+
+      <h2>Good fit if</h2>
+
+      <ul>
+        <li>You have a real problem, but the solution isn’t obvious</li>
+        <li>You need something built that doesn’t fit a standard template</li>
+        <li>You’re tired of tools that create more work than they solve</li>
+        <li>You have the authority to decide and the urgency to move</li>
+      </ul>
+
+      <h2>Not a fit if</h2>
+
+      <ul>
+        <li>You want long discovery processes with no output</li>
+        <li>You’re shopping for tools without a clear problem</li>
+        <li>The work requires endless alignment meetings</li>
+        <li>“Building” means talking about building</li>
+      </ul>
+
+      <h2>How to start</h2>
+
+      <p>
+        Send an email that includes:
+      </p>
+
+      <ul>
+        <li>What’s not working</li>
+        <li>What good looks like</li>
+        <li>When you need it by</li>
+      </ul>
+
+      <p>
+        If it’s a fit, we’ll talk.
+        If it’s not, I’ll tell you quickly.
+      </p>
+
+      <div class="contact">
+        <p>
+          <strong>Email:</strong>
+          <a href="mailto:joshua@fullyautomated.enterprises">joshua@fullyautomated.enterprises</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+
+<style>
+  .content-block {
+    max-width: 65ch;
+  }
+
+  h1 {
+    margin-bottom: 2rem;
+  }
+
+  h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+  }
+
+  .content {
+    color: var(--text-dim);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+  }
+
+  .content p {
+    margin-bottom: 1.25rem;
+  }
+
+  .content ul {
+    margin: 1rem 0 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .content li {
+    line-height: 1.6;
+  }
+
+  .contact {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .contact p {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.9375rem;
+    margin: 0;
+  }
+
+  .contact strong {
+    color: var(--text-dimmer);
+    font-weight: 500;
+  }
+</style>

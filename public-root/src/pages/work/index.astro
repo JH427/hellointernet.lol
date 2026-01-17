@@ -1,0 +1,83 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const artifacts = await getCollection('artifacts');
+const sortedArtifacts = artifacts.sort((a, b) => b.data.id.localeCompare(a.data.id));
+---
+
+<BaseLayout title="Work - hellointernet.lol">
+  <div class="work-index">
+    <h1>Artifacts</h1>
+
+    <div class="artifact-list">
+      {sortedArtifacts.map((artifact) => (
+        <a href={`/work/${artifact.data.id}`} class="artifact-item">
+          <div class="artifact-meta">
+            <span class="artifact-id">{artifact.data.id}</span>
+            <span class="artifact-status">{artifact.data.status}</span>
+          </div>
+          <h3 class="artifact-title">{artifact.data.title}</h3>
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .work-index {
+    max-width: 700px;
+  }
+
+  h1 {
+    margin-bottom: 2rem;
+  }
+
+  .artifact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .artifact-item {
+    display: block;
+    padding: 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    text-decoration: none;
+    transition: border-color 0.15s;
+  }
+
+  .artifact-item:hover {
+    border-color: var(--accent);
+  }
+
+  .artifact-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+  }
+
+  .artifact-id {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .artifact-status {
+    color: var(--text-dimmer);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .artifact-title {
+    color: var(--text);
+    font-size: 1.125rem;
+    font-weight: 500;
+    margin: 0;
+    line-height: 1.4;
+  }
+</style>

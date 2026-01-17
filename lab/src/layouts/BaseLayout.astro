@@ -1,0 +1,186 @@
+---
+interface Props {
+  title?: string;
+}
+
+const { title = 'lab.hellointernet.lol' } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="shell">
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true" />
+      <label for="nav-toggle" class="nav-trigger">
+        <span>menu</span>
+      </label>
+
+      <aside class="nav">
+        <div class="nav-inner">
+          <a href="/" class="brand">lab.hellointernet.lol</a>
+          <a href="/" class:list={['nav-link', { active: currentPath === '/' }]}>experiments</a>
+        </div>
+      </aside>
+
+      <main class="content">
+        <slot />
+      </main>
+    </div>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --bg: #0a0a0a;
+    --text: #c4c4c0;
+    --text-dim: #6b6b66;
+    --text-dimmer: #3a3a37;
+    --accent: #8b7355;
+    --border: #1a1a1a;
+    --surface: #121212;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', -apple-system, system-ui, sans-serif;
+    min-height: 100vh;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { opacity: 0.8; }
+
+  .shell {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    min-height: 100vh;
+    width: 100vw;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  .nav {
+    border-right: 1px solid var(--border);
+    background: var(--bg);
+    min-width: 240px;
+    max-width: 280px;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+  }
+
+  .nav-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 2rem 1.5rem;
+  }
+
+  .brand {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.95rem;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+
+  .nav-link {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    padding: 0.25rem 0;
+  }
+
+  .nav-link.active {
+    color: var(--accent);
+  }
+
+  .content {
+    padding: 3rem 3rem 4rem;
+    overflow-y: auto;
+    min-height: 100vh;
+    width: 100%;
+  }
+
+  h1, h2, h3 { font-weight: 500; color: var(--text); }
+  h1 { font-size: 2rem; margin-bottom: 0.75rem; }
+  h2 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+
+  p { color: var(--text-dim); line-height: 1.6; margin-bottom: 1rem; }
+
+  .nav-trigger {
+    display: none;
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 3;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.5rem 0.85rem;
+    border-radius: 4px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+
+  @media (max-width: 800px) {
+    .shell {
+      grid-template-columns: 1fr;
+      width: 100vw;
+    }
+
+    .nav {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 10, 10, 0.96);
+      transform: translateX(-100%);
+      transition: transform 120ms ease;
+      border-right: none;
+      height: 100vh;
+      max-width: none;
+      width: 100%;
+      z-index: 2;
+    }
+
+    .nav-inner {
+      padding-top: 4.5rem;
+    }
+
+    .nav-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-toggle:checked ~ .nav {
+      transform: translateX(0);
+    }
+
+    .nav-toggle:checked ~ .content {
+      filter: blur(2px);
+    }
+
+    .nav-toggle:checked ~ .nav-trigger {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .content {
+      padding: 2rem 1.25rem;
+      width: 100%;
+      max-width: none;
+    }
+  }
+</style>

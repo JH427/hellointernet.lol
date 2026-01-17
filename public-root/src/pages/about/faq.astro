@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const faqs = [
+  {
+    question: "What do you actually do?",
+    answer: "I reduce complexity until progress becomes obvious. Sometimes that looks like software. Sometimes it looks like a decision."
+  },
+  {
+    question: "Are you an AI consultant?",
+    answer: "No. I use AI the same way I use scripts, spreadsheets, or sharp knives; when it's the right tool."
+  },
+  {
+    question: "Do you build or advise?",
+    answer: "Yes. Thinking without building is just theory. Building without thinking is expensive."
+  },
+  {
+    question: "Who do you work best with?",
+    answer: "People who can decide. Founders, operators, and teams who feel friction and want it gone."
+  },
+  {
+    question: "How do engagements usually start?",
+    answer: "Something is messy. Something is slow. Someone is tired of pretending it's OK."
+  },
+  {
+    question: "What's your process?",
+    answer: "Find the constraint. Build around it. Remove myself as soon as possible."
+  },
+];
+---
+
+<BaseLayout title="FAQ - hellointernet.lol">
+  <div class="content-block">
+    <h1>FAQ</h1>
+
+    <div class="faq-list">
+      {faqs.map((faq) => (
+        <div class="faq-item">
+          <h2 class="faq-question">{faq.question}</h2>
+          <p class="faq-answer">{faq.answer}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .content-block {
+    max-width: 65ch;
+  }
+
+  h1 {
+    margin-bottom: 2.5rem;
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .faq-item {
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .faq-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .faq-question {
+    font-size: 1.125rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    color: var(--text);
+  }
+
+  .faq-answer {
+    color: var(--text-dim);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+</style>

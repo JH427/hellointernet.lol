@@ -1,0 +1,57 @@
+# =========================
+# OS / Editor junk
+# =========================
+.DS_Store
+Thumbs.db
+
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# =========================
+# Node / package managers
+# =========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =========================
+# Astro / build output
+# =========================
+dist/
+.astro/
+
+# =========================
+# Env / secrets
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# Logs
+# =========================
+logs/
+*.log
+
+# =========================
+# Temporary / scratch
+# =========================
+tmp/
+temp/
+.cache/
+
+# =========================
+# Optional tooling (future-proofing)
+# =========================
+coverage/
+.eslintcache
+.parcel-cache/
+
+# =========================
+# Ignore generated PDFs (if you add resume builds later)
+# =========================
+*.pdf

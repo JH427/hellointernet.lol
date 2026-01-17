@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="No List - hellointernet.lol">
+  <div class="content-block">
+    <h1>No List</h1>
+
+    <div class="intro">
+      <p>This isn't a negotiation tactic.</p>
+      <p>It's a filter.</p>
+    </div>
+
+    <ul class="list">
+      <li>"Just exploring AI" projects</li>
+      <li>Decks without execution</li>
+      <li>Automation for its own sake</li>
+      <li>Being the smartest person in the room</li>
+      <li>Chasing tools, trends, or hype cycles</li>
+      <li>Long timelines with no shipped artifacts</li>
+    </ul>
+
+    <div class="closing">
+      <p>If any of this bothers you, it's working.</p>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .content-block {
+    max-width: 65ch;
+  }
+
+  h1 {
+    margin-bottom: 2rem;
+  }
+
+  .intro {
+    margin-bottom: 2.5rem;
+    font-size: 1.125rem;
+    line-height: 1.5;
+  }
+
+  .intro p {
+    margin-bottom: 0.5rem;
+  }
+
+  .list {
+    list-style: none;
+    margin: 0 0 2.5rem 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .list li {
+    position: relative;
+    padding-left: 1.5rem;
+    color: var(--text-dim);
+    font-size: 1.0625rem;
+    line-height: 1.5;
+  }
+
+  .list li::before {
+    content: 'X';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .closing {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    font-size: 1rem;
+    color: var(--text-dim);
+  }
+
+  .closing p {
+    margin: 0;
+  }
+</style>

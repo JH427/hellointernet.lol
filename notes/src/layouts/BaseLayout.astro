@@ -1,0 +1,132 @@
+---
+interface Props {
+  title?: string;
+}
+
+const { title = 'notes.hellointernet.lol' } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="shell">
+      <header class="topbar">
+        <div class="identity">
+          <a href="/" class="brand">notes.hellointernet.lol</a>
+          <span class="divider">/</span>
+          <a href="/" class:list={['section', { active: currentPath === '/' }]}>index</a>
+        </div>
+        <a class="root-link" href="https://hellointernet.lol">↲ root</a>
+      </header>
+
+      <main class="content">
+        <slot />
+      </main>
+    </div>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --bg: #0a0a0a;
+    --text: #c4c4c0;
+    --text-dim: #6b6b66;
+    --text-dimmer: #3a3a37;
+    --accent: #8b7355;
+    --border: #1a1a1a;
+    --surface: #121212;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', -apple-system, system-ui, sans-serif;
+    min-height: 100vh;
+    width: 100vw;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { opacity: 0.8; }
+
+  .shell {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100vw;
+  }
+
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.75rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+  }
+
+  .identity {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.95rem;
+  }
+
+  .brand {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .divider { color: var(--text-dimmer); }
+
+  .section {
+    color: var(--text-dim);
+  }
+
+  .section.active {
+    color: var(--accent);
+  }
+
+  .root-link {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+  }
+
+  .content {
+    padding: 2rem 1.75rem 3rem;
+    width: 100%;
+  }
+
+  h1, h2, h3 { font-weight: 500; color: var(--text); }
+  h1 { font-size: 2rem; margin-bottom: 0.75rem; }
+  h2 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+
+  p { color: var(--text-dim); line-height: 1.7; margin-bottom: 1rem; }
+
+  ul { padding-left: 1.2rem; color: var(--text-dim); line-height: 1.6; }
+
+  .text-slab {
+    max-width: 72ch;
+  }
+
+  @media (max-width: 800px) {
+    .topbar {
+      padding: 1rem 1.25rem;
+    }
+    .content {
+      padding: 1.5rem 1.25rem 2.5rem;
+    }
+  }
+</style>

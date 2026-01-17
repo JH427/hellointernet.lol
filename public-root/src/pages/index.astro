@@ -1,0 +1,117 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="hellointernet.lol">
+  <div class="home">
+    <h1 class="headline">I build small systems that make messy things obvious.</h1>
+
+    <div class="subtext">
+      <p>I work in the gaps between ideas, tools, and execution.</p>
+      <p>Sometimes this becomes software.</p>
+      <p>Sometimes leverage.</p>
+      <p>Often both.</p>
+    </div>
+
+    <div class="orientation">
+      <p>If you're here to browse, start with the <a href="/work">work</a>.</p>
+      <p>If you're here to move fast, there's a <a href="/hire">door for that too</a>.</p>
+    </div>
+
+    <div class="utility-links">
+      <a href="/resume">resume</a>
+      <span class="separator">·</span>
+      <a href="#" class="disabled">store</a>
+      <span class="separator">·</span>
+      <a href="#" class="disabled">links</a>
+    </div>
+
+    <footer class="footer">
+      <p>No feeds. No funnels. Just artifacts.</p>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .home {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    max-width: 600px;
+  }
+
+  .headline {
+    font-size: 2.25rem;
+    line-height: 1.25;
+    font-weight: 500;
+    margin-bottom: 0;
+  }
+
+  .subtext {
+    color: var(--text-dim);
+    font-size: 1.0625rem;
+    line-height: 1.5;
+  }
+
+  .subtext p {
+    margin-bottom: 0.5rem;
+  }
+
+  .subtext p:last-child {
+    margin-bottom: 0;
+  }
+
+  .orientation {
+    padding-top: 1rem;
+  }
+
+  .orientation p {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+  }
+
+  .utility-links {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    color: var(--text-dimmer);
+  }
+
+  .utility-links a {
+    color: var(--text-dimmer);
+    text-decoration: none;
+  }
+
+  .utility-links a:hover {
+    color: var(--text-dim);
+  }
+
+  .utility-links a.disabled {
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+  .separator {
+    color: var(--text-dimmer);
+  }
+
+  .footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.875rem;
+    color: var(--text-dimmer);
+  }
+
+  .footer p {
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .headline {
+      font-size: 1.75rem;
+    }
+  }
+</style>

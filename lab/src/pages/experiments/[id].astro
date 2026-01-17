@@ -1,0 +1,73 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const experiments = await getCollection('experiments');
+  return experiments.map((experiment) => ({
+    params: { id: experiment.data.id },
+    props: { experiment },
+  }));
+}
+
+const { experiment } = Astro.props;
+const { Content } = await experiment.render();
+---
+
+<BaseLayout title={`${experiment.data.title} | lab.hellointernet.lol`}>
+  <article class="experiment">
+    <div class="meta">
+      <span class="id">{experiment.data.id}</span>
+      <span class:list={['status', experiment.data.status]}>{experiment.data.status}</span>
+      {experiment.data.timestamp && <span class="timestamp">{experiment.data.timestamp}</span>}
+    </div>
+    <h1>{experiment.data.title}</h1>
+    <div class="body">
+      <Content />
+    </div>
+    {experiment.data.link && (
+      <p class="external">
+        <a href={experiment.data.link} target="_blank" rel="noopener noreferrer">External link</a>
+      </p>
+    )}
+    <p class="back"><a href="/">← back to list</a></p>
+  </article>
+</BaseLayout>
+
+<style>
+  .experiment { max-width: 720px; }
+
+  .meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--text-dimmer);
+    margin-bottom: 0.5rem;
+  }
+
+  .id { color: var(--accent); }
+
+  .status {
+    padding: 0.15rem 0.4rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    text-transform: lowercase;
+  }
+
+  .status.active { border-color: #4c8b55; color: #9ad8a4; }
+  .status.in-progress { border-color: #8b7355; color: var(--accent); }
+  .status.paused { border-color: #6b6b66; color: var(--text-dim); }
+  .status.archived { border-color: #3a3a37; color: var(--text-dimmer); }
+
+  .timestamp { color: var(--text-dim); }
+
+  h1 { margin-bottom: 1rem; }
+
+  .body { color: var(--text-dim); }
+  .body p { margin-bottom: 1rem; line-height: 1.7; }
+
+  .external { margin-top: 1.5rem; }
+  .back { margin-top: 2rem; font-family: 'IBM Plex Mono', monospace; }
+</style>

@@ -1,0 +1,76 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const notes = await getCollection('notes');
+  return notes.map((note) => ({
+    params: { slug: note.slug },
+    props: { note },
+  }));
+}
+
+const { note } = Astro.props;
+const { Content } = await note.render();
+---
+
+<BaseLayout title={`${note.data.title} | notes.hellointernet.lol`}>
+  <article class="note text-slab">
+    <div class="meta">
+      <span class="id">{note.data.id}</span>
+      {note.data.status !== 'published' && (
+        <span class:list={['status', note.data.status]}>{note.data.status}</span>
+      )}
+      {note.data.updated && <span class="updated">updated {note.data.updated}</span>}
+    </div>
+
+    <h1>{note.data.title}</h1>
+
+    <div class="body">
+      <Content />
+    </div>
+
+    <p class="back"><a href="/">← back to notes</a></p>
+  </article>
+</BaseLayout>
+
+<style>
+  .meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--text-dimmer);
+    margin-bottom: 0.5rem;
+  }
+
+  .id { color: var(--accent); }
+
+  .status {
+    padding: 0.15rem 0.4rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    text-transform: lowercase;
+    color: var(--text-dim);
+  }
+
+  .status.draft { border-color: #6b6b66; }
+  .status.archived { border-color: #3a3a37; color: #3a3a37; }
+
+  .updated { color: var(--text-dim); }
+
+  h1 { margin-bottom: 1rem; font-size: 1.9rem; }
+
+  .body {
+    color: var(--text-dim);
+  }
+
+  .body p { margin-bottom: 1rem; line-height: 1.7; }
+
+  .back {
+    margin-top: 2rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.9rem;
+  }
+</style>

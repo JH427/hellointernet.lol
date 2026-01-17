@@ -1,0 +1,61 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const sectionsOrder = ['people', 'tools', 'writing', 'misc'];
+const entries = await getCollection('signal');
+const sections = sectionsOrder
+  .map((id) => entries.find((entry) => entry.slug === id))
+  .filter(Boolean);
+
+const rendered = await Promise.all(
+  sections.map(async (section) => {
+    const { Content } = await section.render();
+    return { ...section, Content };
+  })
+);
+---
+
+<BaseLayout title="signal.hellointernet.lol">
+  <div class="stack">
+    <header class="intro">
+      <h1>Signal</h1>
+      <p>Curation, not feed. Manual order. Add a bullet, ship.</p>
+    </header>
+
+    {rendered.map((section) => (
+      <section class="block">
+        <h2>{section.data.title}</h2>
+        <div class="list">
+          <section.Content />
+        </div>
+      </section>
+    ))}
+  </div>
+</BaseLayout>
+
+<style>
+  .block h2 {
+    margin-bottom: 0.65rem;
+    font-size: 1.1rem;
+    letter-spacing: 0.01em;
+  }
+
+  .list ul {
+    list-style: disc;
+    padding-left: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .list li {
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+</style>

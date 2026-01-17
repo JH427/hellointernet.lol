@@ -1,0 +1,114 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const artifacts = await getCollection('artifacts');
+  return artifacts.map(artifact => ({
+    params: { id: artifact.data.id },
+    props: { artifact },
+  }));
+}
+
+const { artifact } = Astro.props;
+const { Content } = await artifact.render();
+---
+
+<BaseLayout title={`${artifact.data.title} - hellointernet.lol`}>
+  <div class="artifact-detail">
+    <div class="artifact-header">
+      <div class="artifact-meta">
+        <span class="artifact-id">{artifact.data.id}</span>
+        <span class="artifact-status">{artifact.data.status}</span>
+      </div>
+      <h1>{artifact.data.title}</h1>
+    </div>
+
+    <div class="artifact-content">
+      <Content />
+    </div>
+
+    {artifact.data.link && (
+      <div class="artifact-link">
+        <a href={artifact.data.link} target="_blank" rel="noopener noreferrer">
+          View project →
+        </a>
+      </div>
+    )}
+
+    <div class="back-link">
+      <a href="/work">← Back to all artifacts</a>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .artifact-detail {
+    max-width: 650px;
+  }
+
+  .artifact-header {
+    margin-bottom: 2rem;
+  }
+
+  .artifact-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+  }
+
+  .artifact-id {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .artifact-status {
+    color: var(--text-dimmer);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 2rem;
+    line-height: 1.25;
+  }
+
+  .artifact-content {
+    color: var(--text-dim);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .artifact-link {
+    margin-bottom: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .artifact-link a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.875rem;
+    text-decoration: none;
+  }
+
+  .back-link {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .back-link a {
+    color: var(--text-dimmer);
+    text-decoration: none;
+    font-size: 0.875rem;
+  }
+
+  .back-link a:hover {
+    color: var(--text-dim);
+  }
+</style>
