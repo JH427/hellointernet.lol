@@ -16,27 +16,145 @@ This is an operating system.
   Canonical site. First impression, authority surface.
   Homepage, artifacts, No List, FAQ, hire page, resume.
 
-- `lab/`  
-  Experiments and half-built things. Rough edges allowed.
+## Subdomains
 
-- `signal/`  
-  Curated links, people, tools, writing worth attention.
-  Opinionated, low-frequency, high-signal.
+This project is structured as a set of **independent static surfaces**, each mapped to a subdomain.
+Each surface has a single purpose and is deployed separately.
 
-- `links/`  
-  Link-in-bio / social routing. One static HTML page.
+Subdomains are treated as **interfaces**, not features.
 
-- `store/`  
-  Redirect-only subdomain (Gumroad).
+---
 
-- `resume/`  
-  Redirect-only subdomain pointing to `/resume` on the root site.
+### `hellointernet.lol` (root)
+**Role:** Authority surface  
+**Purpose:** First impression, proof of competence, orientation
 
-- `notes/`  
-  (Planned) Lightweight notes / fieldnotes. Not finalized.
+- Homepage
+- Artifacts (work)
+- No List
+- FAQ
+- Hire
+- Resume (canonical)
 
-- `now/`  
-  (Planned) What I’m focused on right now. Changes occasionally.
+This is the only surface that should feel “finished.”
+
+---
+
+### `lab.hellointernet.lol`
+**Role:** Work surface  
+**Purpose:** Experiments, half-built tools, prototypes
+
+- Rough edges allowed
+- Status and timestamps visible
+- Not linked prominently from the root
+
+This is where things are tried, not sold.
+
+---
+
+### `signal.hellointernet.lol`
+**Role:** Curation surface  
+**Purpose:** Taste, filtering, pointing at things worth attention
+
+- People worth following
+- Tools
+- Writing
+- Watching / listening / visuals
+- Opinionated, low-frequency updates
+
+This is not a feed or a blog.
+
+---
+
+### `scratch.hellointernet.lol`
+**Role:** Thinking surface  
+**Purpose:** Working notes and internal structure made public
+
+- Assumptions
+- Questions
+- Models
+- References
+- Versions / changes
+
+This surface is allowed to be incomplete.
+
+---
+
+### `links.hellointernet.lol`
+**Role:** Utility surface  
+**Purpose:** Social routing / link-in-bio
+
+- Single static page
+- Updated frequently
+- No build step
+
+Not part of site navigation.
+
+---
+
+### `store.hellointernet.lol`
+**Role:** Utility surface  
+**Purpose:** Ownership-preserving redirect to products (Gumroad)
+
+- Redirect-only
+- No UI
+
+---
+
+### `contact.hellointernet.lol`
+**Role:** Action surface  
+**Purpose:** Fulfill intent once someone decides to act
+
+- Pay
+- Donate
+- Meet
+- Email
+
+This consolidates all “do something” actions into one place.
+
+---
+
+### `now.hellointernet.lol`
+**Role:** Signal / operator surface  
+**Purpose:** What I’m focused on right now
+
+- Changes occasionally
+- Signals momentum and scarcity
+
+Optional, but powerful.
+
+---
+
+### `this.hellointernet.lol` (optional)
+**Role:** Meta surface  
+**Purpose:** Explain the system itself
+
+- Why this exists
+- How it’s structured
+- What it’s for
+
+Only exists if it adds clarity.
+
+---
+
+### `ops.hellointernet.lol` (optional)
+**Role:** Operator surface  
+**Purpose:** Internal tools, playbooks, and runbooks
+
+- Playbook
+- Checklists
+- Admin links
+
+May remain obscure or private.
+
+---
+
+## Guiding Rules
+
+- Subdomains are **surfaces**, not categories
+- Each subdomain does **one thing**
+- Sections live *inside* subdomains, not alongside them
+- If editing a surface feels heavy, it should not exist
 
 ---
 
@@ -81,20 +199,20 @@ See TODO below.
 ## TODO
 
 ### Core (before anything goes live)
-- [ ] Decide which subdomains are discoverable vs hidden
-- [ ] Finish editing content in `public-root/`
-  - [ ] Artifacts copy pass
-  - [ ] No List tone check
-  - [ ] FAQ final trim
-- [ ] Decide homepage utility nav (what links appear, if any)
-- [ ] Add version marker (v0.1)
+- [x] Decide which subdomains are discoverable vs hidden
+- [x] Finish editing content in `public-root/`
+  - [x] Artifacts copy pass
+  - [x] No List tone check
+  - [x] FAQ final trim
+- [x] Decide homepage utility nav (what links appear, if any)
+- [x] Add version marker (v0.1)
 
 ### Build / Test
-- [ ] Run `npm run build` in:
-  - [ ] public-root
+- [x] Run `npm run build` in:
+  - [x] public-root
   - [ ] lab
   - [ ] signal
-- [ ] Smoke-test `npm run preview` where applicable
+- [x] Smoke-test `npm run preview` where applicable
 - [ ] Confirm no generated files are tracked in git
 
 ### Deployment Planning
