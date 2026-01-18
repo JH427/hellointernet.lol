@@ -12,12 +12,6 @@ This is an operating system.
 
 ## Structure
 
-- `public-root/`  
-  Canonical site. First impression, authority surface.
-  Homepage, artifacts, No List, FAQ, hire page, resume.
-
-## Subdomains
-
 This project is structured as a set of **independent static surfaces**, each mapped to a subdomain.
 Each surface has a single purpose and is deployed separately.
 
