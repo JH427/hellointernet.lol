@@ -17,8 +17,6 @@ Each surface has a single purpose and is deployed separately.
 
 Subdomains are treated as **interfaces**, not features.
 
----
-
 ### `hellointernet.lol` (root)
 **Role:** Authority surface  
 **Purpose:** First impression, proof of competence, orientation
