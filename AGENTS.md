@@ -95,4 +95,4 @@ Never commit:
 
 ## Deployment posture
 
-Deployment automation publishes a generated static artifact tree to `porkbun-deploy`. Do not connect source `main` to Porkbun hosting. Connect Porkbun GitHub Connect to `porkbun-deploy` after inspecting the generated branch.
+Deployment automation publishes a generated static artifact tree to `porkbun-deploy`, and Porkbun GitHub Connect is connected to that branch. Do not connect source `main` to Porkbun hosting. Verify live root/subdomain routes after deployment-significant changes.

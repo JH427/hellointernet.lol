@@ -1,6 +1,6 @@
 # hellointernet.lol deployment runbook
 
-Current status: Porkbun Static Hosting subdomain folder mappings are configured. GitHub remains the source of truth. The preferred deploy path is to publish generated static artifacts to the `porkbun-deploy` branch and connect Porkbun GitHub Connect to that branch.
+Current status: Porkbun Static Hosting subdomain folder mappings are configured and Porkbun GitHub Connect is connected to the generated `porkbun-deploy` branch. GitHub remains the source of truth.
 
 ## Repository shape
 
@@ -52,9 +52,9 @@ done
 
 GitHub Actions runs the same checks on pushes and pull requests to `main`.
 
-## Preferred Porkbun/GitHub Connect path
+## Porkbun/GitHub Connect path
 
-Because Porkbun Static Hosting's GitHub behavior appears to publish selected branch contents directly, do not connect Porkbun to source `main`. Connect it to the generated `porkbun-deploy` branch after inspecting the first generated artifact tree.
+Because Porkbun Static Hosting publishes selected branch contents directly, do not connect Porkbun to source `main`. Porkbun GitHub Connect is connected to the generated `porkbun-deploy` branch.
 
 Safe path:
 
@@ -62,8 +62,8 @@ Safe path:
 2. Build each Astro surface in CI/local automation.
 3. Assemble a static artifact tree matching Porkbun's domain/subdomain mapping.
 4. Push artifacts to the dedicated `porkbun-deploy` branch.
-5. Connect Porkbun GitHub Connect to `porkbun-deploy`, not source `main`.
-6. Verify live routes before treating the deployment path as stable.
+5. Porkbun GitHub Connect publishes `porkbun-deploy`, not source `main`.
+6. Verify live routes after every deployment-significant change.
 
 ## Artifact layout
 
