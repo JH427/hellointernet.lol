@@ -1,0 +1,58 @@
+name: Build
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  astro-builds:
+    name: Build ${{ matrix.surface }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - surface: public-root
+            path: public-root
+          - surface: lab
+            path: lab
+          - surface: notes
+            path: notes
+          - surface: signal
+            path: signal
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: ${{ matrix.path }}/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: ${{ matrix.path }}
+
+      - name: Build
+        run: npm run build
+        working-directory: ${{ matrix.path }}
+
+  static-surfaces:
+    name: Check static redirect surfaces
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Verify static entrypoints
+        run: |
+          set -euo pipefail
+          for surface in links now resume store; do
+            test -f "$surface/index.html"
+          done

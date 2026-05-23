@@ -174,7 +174,7 @@ npm run build
 
 Deploy the dist/ output for that folder to its corresponding subdomain.
 
-Redirect-only folders (links, store, resume) require no build step.
+Redirect-only folders (links, now, store, resume) require no build step. See `AGENTS.md` and `DEPLOYMENT.md` for repo-wide checks and deployment posture.
 
 ---
 
@@ -202,10 +202,12 @@ See TODO below.
 ### Build / Test
 - [x] Run `npm run build` in:
   - [x] public-root
-  - [ ] lab
-  - [ ] signal
+  - [x] lab
+  - [x] notes
+  - [x] signal
+- [x] Add GitHub Actions build checks
 - [x] Smoke-test `npm run preview` where applicable
-- [ ] Confirm no generated files are tracked in git
+- [x] Confirm no generated files are tracked in git
 
 ### Deployment Planning
 - [ ] Decide hosting target for each surface
