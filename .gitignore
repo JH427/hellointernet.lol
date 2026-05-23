@@ -43,6 +43,7 @@ logs/
 tmp/
 temp/
 .cache/
+.superpowers/
 
 # =========================
 # Optional tooling (future-proofing)
