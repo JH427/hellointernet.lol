@@ -51,6 +51,9 @@ coverage/
 .eslintcache
 .parcel-cache/
 
+# Generated Porkbun deploy branch artifact tree
+.porkbun-deploy/
+
 # =========================
 # Ignore generated PDFs (if you add resume builds later)
 # =========================

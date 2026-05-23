@@ -16,7 +16,7 @@ Astro build surfaces:
 
 - `public-root/` -> `hellointernet.lol`
 - `lab/` -> `lab.hellointernet.lol`
-- `notes/` -> notes/scratch-style public working notes surface
+- `notes/` -> `wiki.hellointernet.lol`
 - `signal/` -> `signal.hellointernet.lol`
 
 Static/redirect surfaces with no build step:
@@ -25,6 +25,17 @@ Static/redirect surfaces with no build step:
 - `now/`
 - `resume/`
 - `store/`
+
+Configured Porkbun paths:
+
+- `artifacts` -> `/artifacts`
+- `lab` -> `/lab`
+- `signal` -> `/signal`
+- `wiki` -> `/wiki`
+- `links` -> `/links`
+- `now` -> `/now`
+- `resume` -> `/resume`
+- `store` -> `/store`
 
 ## Safe edit surfaces
 
@@ -84,4 +95,4 @@ Never commit:
 
 ## Deployment posture
 
-Deployment automation is not configured yet. Porkbun Static Hosting / GitHub Connect will be evaluated, likely against a dedicated deploy branch if Porkbun publishes branch contents directly. Do not connect source `main` to hosting unless build/output-directory behavior has been verified.
+Deployment automation publishes a generated static artifact tree to `porkbun-deploy`. Do not connect source `main` to Porkbun hosting. Connect Porkbun GitHub Connect to `porkbun-deploy` after inspecting the generated branch.

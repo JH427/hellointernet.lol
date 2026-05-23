@@ -1,0 +1,44 @@
+name: Publish Porkbun Deploy Branch
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: porkbun-deploy
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Build and publish porkbun-deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Build deploy tree
+        run: scripts/build-porkbun-deploy-tree.sh .porkbun-deploy
+
+      - name: Publish generated branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          cd .porkbun-deploy
+          git init
+          git checkout -b porkbun-deploy
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "deploy: publish Porkbun static artifact tree"
+          git remote add origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git push --force origin porkbun-deploy
