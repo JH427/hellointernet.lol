@@ -3,7 +3,7 @@ interface Props {
   title?: string;
 }
 
-const { title = 'notes.hellointernet.lol' } = Astro.props;
+const { title = 'wiki.hellointernet.lol' } = Astro.props;
 const currentPath = Astro.url.pathname;
 ---
 
@@ -21,7 +21,7 @@ const currentPath = Astro.url.pathname;
     <div class="shell">
       <header class="topbar">
         <div class="identity">
-          <a href="/" class="brand">notes.hellointernet.lol</a>
+          <a href="/" class="brand">wiki.hellointernet.lol</a>
           <span class="divider">/</span>
           <a href="/" class:list={['section', { active: currentPath === '/' }]}>index</a>
         </div>
