@@ -15,16 +15,16 @@ const { Content } = await note.render();
 ---
 
 <BaseLayout title={`${note.data.title} | wiki.hellointernet.lol`}>
-  <article class="note text-slab">
-    <div class="meta">
+  <article class="note cg-text-slab">
+    <div class="meta cg-meta">
       <span class="id">{note.data.id}</span>
       {note.data.status !== 'published' && (
-        <span class:list={['status', note.data.status]}>{note.data.status}</span>
+        <span class:list={['cg-status', note.data.status]}>{note.data.status}</span>
       )}
       {note.data.updated && <span class="updated">updated {note.data.updated}</span>}
     </div>
 
-    <h1>{note.data.title}</h1>
+    <h1 class="title">{note.data.title}</h1>
 
     <div class="body">
       <Content />
@@ -35,42 +35,21 @@ const { Content } = await note.render();
 </BaseLayout>
 
 <style>
-  .meta {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.85rem;
-    color: var(--text-dimmer);
-    margin-bottom: 0.5rem;
+  .index,
+  .note {
+    max-width: 820px;
   }
 
-  .id { color: var(--accent); }
-
-  .status {
-    padding: 0.15rem 0.4rem;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    text-transform: lowercase;
-    color: var(--text-dim);
+  .title {
+    font-weight: 600;
   }
-
-  .status.draft { border-color: #6b6b66; }
-  .status.archived { border-color: #3a3a37; color: #3a3a37; }
-
-  .updated { color: var(--text-dim); }
-
-  h1 { margin-bottom: 1rem; font-size: 1.9rem; }
 
   .body {
-    color: var(--text-dim);
+    margin-top: 1.25rem;
   }
 
-  .body p { margin-bottom: 1rem; line-height: 1.7; }
-
-  .back {
-    margin-top: 2rem;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.9rem;
+  .body :global(p),
+  .body :global(li) {
+    color: var(--cg-text-2);
   }
 </style>

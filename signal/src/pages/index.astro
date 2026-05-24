@@ -17,14 +17,15 @@ const rendered = await Promise.all(
 ---
 
 <BaseLayout title="signal.hellointernet.lol">
-  <div class="stack">
-    <header class="intro">
+  <div class="stack cg-stack">
+    <header class="intro cg-panel">
+      <div class="cg-kicker">curation surface</div>
       <h1>Signal</h1>
       <p>Curation, not feed. Manual order. Add a bullet, ship.</p>
     </header>
 
     {rendered.map((section) => (
-      <section class="block">
+      <section class="block cg-card">
         <h2>{section.data.title}</h2>
         <div class="list">
           <section.Content />
