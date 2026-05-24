@@ -3,115 +3,87 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="hellointernet.lol">
-  <div class="home">
+  <section class="home cg-panel">
+    <div class="cg-kicker">operator surface / online</div>
     <h1 class="headline">I build small systems that make messy things obvious.</h1>
 
     <div class="subtext">
       <p>I work in the gaps between ideas, tools, and execution.</p>
-      <p>Sometimes this becomes software.</p>
-      <p>Sometimes leverage.</p>
-      <p>Often both.</p>
+      <p>Sometimes this becomes software. Sometimes leverage. Often both.</p>
     </div>
 
-    <div class="orientation">
-      <p>If you're here to browse, start with the <a href="/work">work</a>.</p>
-      <p>If you're here to move fast, there's a <a href="/hire">door for that too</a>.</p>
+    <div class="route-grid" aria-label="Primary routes">
+      <a class="cg-command" href="/work">
+        <span>$ open work</span>
+        <span>artifacts</span>
+      </a>
+      <a class="cg-command" href="/hire">
+        <span>$ start engagement</span>
+        <span>work with me</span>
+      </a>
     </div>
 
-    <div class="utility-links">
-      <a href="/resume">resume</a>
-      <span class="separator">·</span>
-      <a href="#" class="disabled">store</a>
-      <span class="separator">·</span>
-      <a href="#" class="disabled">links</a>
+    <div class="surface-pills" aria-label="Utility routes">
+      <a class="cg-pill" href="/resume">resume</a>
+      <a class="cg-pill" href="https://links.hellointernet.lol">links</a>
+      <a class="cg-pill" href="https://now.hellointernet.lol">now</a>
+      <a class="cg-pill" href="https://lab.hellointernet.lol">lab</a>
+      <a class="cg-pill" href="https://signal.hellointernet.lol">signal</a>
+      <a class="cg-pill" href="https://wiki.hellointernet.lol">wiki</a>
     </div>
 
     <footer class="footer">
       <p>No feeds. No funnels. Just artifacts.</p>
     </footer>
-  </div>
+  </section>
 </BaseLayout>
 
 <style>
   .home {
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
-    max-width: 600px;
+    max-width: 780px;
   }
 
   .headline {
-    font-size: 2.25rem;
-    line-height: 1.25;
-    font-weight: 500;
-    margin-bottom: 0;
+    max-width: 13ch;
+    margin-top: 0.8rem;
+    font-size: clamp(2.35rem, 8vw, 5.4rem);
+    line-height: 0.98;
   }
 
   .subtext {
-    color: var(--text-dim);
-    font-size: 1.0625rem;
-    line-height: 1.5;
+    max-width: 56ch;
+    margin-top: 1.5rem;
+    font-size: 1.08rem;
   }
 
-  .subtext p {
-    margin-bottom: 0.5rem;
+  .route-grid {
+    display: grid;
+    gap: 0.8rem;
+    margin-top: 2rem;
   }
 
-  .subtext p:last-child {
-    margin-bottom: 0;
+  .route-grid .cg-command span:last-child {
+    color: var(--cg-muted);
+    font-size: 0.82rem;
   }
 
-  .orientation {
-    padding-top: 1rem;
-  }
-
-  .orientation p {
-    margin-bottom: 0.5rem;
-    font-size: 1rem;
-  }
-
-  .utility-links {
+  .surface-pills {
     display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 0.875rem;
-    color: var(--text-dimmer);
-  }
-
-  .utility-links a {
-    color: var(--text-dimmer);
-    text-decoration: none;
-  }
-
-  .utility-links a:hover {
-    color: var(--text-dim);
-  }
-
-  .utility-links a.disabled {
-    opacity: 0.3;
-    pointer-events: none;
-  }
-
-  .separator {
-    color: var(--text-dimmer);
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1.2rem;
   }
 
   .footer {
-    margin-top: 4rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--border);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.875rem;
-    color: var(--text-dimmer);
+    margin-top: 3rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--cg-border);
   }
 
   .footer p {
     margin: 0;
-  }
-
-  @media (max-width: 768px) {
-    .headline {
-      font-size: 1.75rem;
-    }
+    color: var(--cg-muted);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.88rem;
   }
 </style>
