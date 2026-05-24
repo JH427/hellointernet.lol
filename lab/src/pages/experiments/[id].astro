@@ -15,10 +15,10 @@ const { Content } = await experiment.render();
 ---
 
 <BaseLayout title={`${experiment.data.title} | lab.hellointernet.lol`}>
-  <article class="experiment">
-    <div class="meta">
+  <article class="experiment cg-text-slab">
+    <div class="cg-meta">
       <span class="id">{experiment.data.id}</span>
-      <span class:list={['status', experiment.data.status]}>{experiment.data.status}</span>
+      <span class:list={['cg-status', experiment.data.status]}>{experiment.data.status}</span>
       {experiment.data.timestamp && <span class="timestamp">{experiment.data.timestamp}</span>}
     </div>
     <h1>{experiment.data.title}</h1>
@@ -27,7 +27,10 @@ const { Content } = await experiment.render();
     </div>
     {experiment.data.link && (
       <p class="external">
-        <a href={experiment.data.link} target="_blank" rel="noopener noreferrer">External link</a>
+        <a class="cg-command" href={experiment.data.link} target="_blank" rel="noopener noreferrer">
+          <span>$ open experiment</span>
+          <span>external</span>
+        </a>
       </p>
     )}
     <p class="back"><a href="/">← back to list</a></p>
@@ -35,39 +38,22 @@ const { Content } = await experiment.render();
 </BaseLayout>
 
 <style>
-  .experiment { max-width: 720px; }
+  .page,
+  .experiment {
+    max-width: 820px;
+  }
 
-  .meta {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
+  .title {
+    margin-top: 0.6rem;
+    font-size: 1.12rem;
+  }
+
+  .body {
+    margin-top: 1.25rem;
+  }
+
+  .back {
+    margin-top: 2rem;
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.82rem;
-    color: var(--text-dimmer);
-    margin-bottom: 0.5rem;
   }
-
-  .id { color: var(--accent); }
-
-  .status {
-    padding: 0.15rem 0.4rem;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    text-transform: lowercase;
-  }
-
-  .status.active { border-color: #4c8b55; color: #9ad8a4; }
-  .status.in-progress { border-color: #8b7355; color: var(--accent); }
-  .status.paused { border-color: #6b6b66; color: var(--text-dim); }
-  .status.archived { border-color: #3a3a37; color: var(--text-dimmer); }
-
-  .timestamp { color: var(--text-dim); }
-
-  h1 { margin-bottom: 1rem; }
-
-  .body { color: var(--text-dim); }
-  .body p { margin-bottom: 1rem; line-height: 1.7; }
-
-  .external { margin-top: 1.5rem; }
-  .back { margin-top: 2rem; font-family: 'IBM Plex Mono', monospace; }
 </style>
