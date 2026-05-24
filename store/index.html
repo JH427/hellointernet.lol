@@ -6,31 +6,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>store.hellointernet.lol → Gumroad</title>
   <link rel="canonical" href="https://gumroad.com/hellointernet">
+  <link rel="stylesheet" href="/command-glass.css">
+  <style>
+    .utility-shell {
+      display: block;
+      max-width: 760px;
+    }
+
+    .utility-panel {
+      margin: 0 auto;
+    }
+
+    .utility-panel .cg-command span {
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+  </style>
   <script>
     // Hard redirect if meta refresh is blocked.
     window.location.replace('https://gumroad.com/hellointernet');
   </script>
-  <style>
-    body {
-      background: #0a0a0a;
-      color: #c4c4c0;
-      font-family: 'IBM Plex Sans', -apple-system, system-ui, sans-serif;
-      display: grid;
-      place-items: center;
-      min-height: 100vh;
-      margin: 0;
-    }
-    main {
-      text-align: center;
-      padding: 2rem;
-    }
-    a { color: #8b7355; }
-  </style>
 </head>
 <body>
-  <main>
-    <p>Redirecting to Gumroad…</p>
-    <p><a href="https://gumroad.com/hellointernet">Continue</a></p>
+  <main class="cg-shell utility-shell">
+    <section class="cg-main">
+      <div class="cg-panel utility-panel">
+        <div class="cg-kicker">redirect / store</div>
+        <h1>Opening store</h1>
+        <p>Redirecting to Gumroad.</p>
+        <a class="cg-command" href="https://gumroad.com/hellointernet"><span>$ continue</span><span>gumroad</span></a>
+      </div>
+    </section>
   </main>
 </body>
 </html>

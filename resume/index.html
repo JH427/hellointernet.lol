@@ -6,28 +6,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>resume.hellointernet.lol</title>
   <link rel="canonical" href="https://hellointernet.lol/resume">
+  <link rel="stylesheet" href="/command-glass.css">
   <style>
-    body {
-      background: #0a0a0a;
-      color: #c4c4c0;
-      font-family: 'IBM Plex Sans', -apple-system, system-ui, sans-serif;
-      display: grid;
-      place-items: center;
-      min-height: 100vh;
-      margin: 0;
+    .utility-shell {
+      display: block;
+      max-width: 760px;
     }
-    main { text-align: center; padding: 2rem; }
-    a { color: #8b7355; text-decoration: none; }
-    a:hover { opacity: 0.8; }
+
+    .utility-panel {
+      margin: 0 auto;
+    }
+
+    .utility-panel .cg-command span {
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
   </style>
   <script>
     window.location.replace('https://hellointernet.lol/resume');
   </script>
 </head>
 <body>
-  <main>
-    <p>Redirecting to the canonical resume.</p>
-    <p><a href="https://hellointernet.lol/resume">Continue</a></p>
+  <main class="cg-shell utility-shell">
+    <section class="cg-main">
+      <div class="cg-panel utility-panel">
+        <div class="cg-kicker">redirect / canonical resume</div>
+        <h1>Opening resume</h1>
+        <p>Redirecting to the canonical resume.</p>
+        <a class="cg-command" href="https://hellointernet.lol/resume"><span>$ continue</span><span>hellointernet.lol/resume</span></a>
+      </div>
+    </section>
   </main>
 </body>
 </html>
