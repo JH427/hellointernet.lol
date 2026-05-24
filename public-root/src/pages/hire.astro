@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="Work with me - hellointernet.lol">
-  <div class="content-block">
+  <div class="content-block cg-text-slab">
     <h1>Work with me</h1>
 
     <div class="content">
@@ -61,10 +61,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </p>
 
       <div class="contact">
-        <p>
-          <strong>Email:</strong>
-          <a href="mailto:joshua@fullyautomated.enterprises">joshua@fullyautomated.enterprises</a>
-        </p>
+        <a class="cg-command" href="mailto:joshua@fullyautomated.enterprises">
+          <span>$ contact</span>
+          <span>joshua@fullyautomated.enterprises</span>
+        </a>
       </div>
     </div>
   </div>
@@ -87,7 +87,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .content {
-    color: var(--text-dim);
+    color: var(--cg-text-2);
     font-size: 1.0625rem;
     line-height: 1.6;
   }
@@ -110,17 +110,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .contact {
     margin-top: 2.5rem;
     padding-top: 2rem;
-    border-top: 1px solid var(--border);
-  }
-
-  .contact p {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.9375rem;
-    margin: 0;
-  }
-
-  .contact strong {
-    color: var(--text-dimmer);
-    font-weight: 500;
+    border-top: 1px solid var(--cg-border);
   }
 </style>

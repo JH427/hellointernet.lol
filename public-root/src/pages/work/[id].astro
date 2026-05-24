@@ -15,11 +15,11 @@ const { Content } = await artifact.render();
 ---
 
 <BaseLayout title={`${artifact.data.title} - hellointernet.lol`}>
-  <div class="artifact-detail">
+  <article class="artifact-detail cg-text-slab">
     <div class="artifact-header">
-      <div class="artifact-meta">
+      <div class="artifact-meta cg-meta">
         <span class="artifact-id">{artifact.data.id}</span>
-        <span class="artifact-status">{artifact.data.status}</span>
+        <span class="cg-status">{artifact.data.status}</span>
       </div>
       <h1>{artifact.data.title}</h1>
     </div>
@@ -30,8 +30,9 @@ const { Content } = await artifact.render();
 
     {artifact.data.link && (
       <div class="artifact-link">
-        <a href={artifact.data.link} target="_blank" rel="noopener noreferrer">
-          View project →
+        <a class="cg-command" href={artifact.data.link} target="_blank" rel="noopener noreferrer">
+          <span>$ open project</span>
+          <span>external</span>
         </a>
       </div>
     )}
@@ -39,76 +40,34 @@ const { Content } = await artifact.render();
     <div class="back-link">
       <a href="/work">← Back to all artifacts</a>
     </div>
-  </div>
+  </article>
 </BaseLayout>
 
 <style>
-  .artifact-detail {
-    max-width: 650px;
-  }
-
-  .artifact-header {
-    margin-bottom: 2rem;
-  }
-
-  .artifact-meta {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.75rem;
-  }
-
-  .artifact-id {
-    color: var(--accent);
-    font-weight: 500;
-  }
-
-  .artifact-status {
-    color: var(--text-dimmer);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  h1 {
-    margin: 0;
-    font-size: 2rem;
-    line-height: 1.25;
+  .artifact-detail h1 {
+    margin-top: 0.75rem;
+    font-size: clamp(2rem, 6vw, 3.7rem);
   }
 
   .artifact-content {
-    color: var(--text-dim);
-    font-size: 1.0625rem;
-    line-height: 1.6;
-    margin-bottom: 2rem;
+    margin-top: 1.5rem;
   }
 
-  .artifact-link {
-    margin-bottom: 2rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--border);
+  .artifact-content :global(p),
+  .artifact-content :global(li) {
+    color: var(--cg-text-2);
   }
 
-  .artifact-link a {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.875rem;
-    text-decoration: none;
-  }
-
+  .artifact-link,
   .back-link {
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--border);
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--cg-border);
   }
 
   .back-link a {
-    color: var(--text-dimmer);
+    color: var(--cg-muted);
     text-decoration: none;
-    font-size: 0.875rem;
-  }
-
-  .back-link a:hover {
-    color: var(--text-dim);
+    font-family: 'IBM Plex Mono', monospace;
   }
 </style>
