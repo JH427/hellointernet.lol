@@ -24,7 +24,7 @@ const currentPath = Astro.url.pathname;
         <a href="/" class="cg-brand">lab.hellointernet.lol</a>
         <div class="cg-nav-group">
           <div class="cg-nav-label">Surface</div>
-          <a href="/" class:list={['cg-nav-link', { active: currentPath === '/' }]}>experiments</a>
+          <a href="/" class:list={['cg-nav-link', { active: currentPath === '/' || currentPath.startsWith('/experiments') }]}>experiments</a>
           <a href="https://hellointernet.lol" class="cg-nav-link">root</a>
         </div>
       </nav>
