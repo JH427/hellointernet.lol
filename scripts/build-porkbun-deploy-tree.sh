@@ -94,7 +94,11 @@ copy_tree "$ROOT/signal/dist" "$OUT/signal"
 
 copy_tree "$ROOT/links" "$OUT/links"
 copy_tree "$ROOT/now" "$OUT/now"
+copy_tree "$ROOT/contact" "$OUT/contact"
 # Resume is provided by public-root/dist/resume — do not overwrite with static redirect.
+copy_tree "$ROOT/this" "$OUT/this"
+copy_tree "$ROOT/scratch" "$OUT/scratch"
+copy_tree "$ROOT/ops" "$OUT/ops"
 copy_tree "$ROOT/store" "$OUT/store"
 
 # Keep deploy branch to web-serving artifacts only.
@@ -122,7 +126,11 @@ Porkbun folder mappings:
 - wiki -> /wiki
 - links -> /links
 - now -> /now
+- contact -> /contact
 - resume -> /resume
+- this -> /this
+- scratch -> /scratch
+- ops -> /ops
 - store -> /store
 
 Do not edit this branch by hand. Edit source files on main.
@@ -136,7 +144,11 @@ for dir in \
   "$OUT/wiki" \
   "$OUT/links" \
   "$OUT/now" \
+  "$OUT/contact" \
   "$OUT/resume" \
+  "$OUT/this" \
+  "$OUT/scratch" \
+  "$OUT/ops" \
   "$OUT/store"; do
   require_index "$dir"
 done

@@ -21,7 +21,11 @@ Static/redirect surfaces:
 | --- | --- | --- |
 | Links | `links/` | none |
 | Now | `now/` | none |
+| Contact | `contact/` | none |
 | Resume | `resume/` | none |
+| This | `this/` | none |
+| Scratch | `scratch/` | none |
+| Ops | `ops/` | none |
 | Store | `store/` | none |
 
 Porkbun folder mappings configured by Joshua:
@@ -34,7 +38,11 @@ Porkbun folder mappings configured by Joshua:
 | `wiki` | `/wiki` | `notes/dist/` |
 | `links` | `/links` | `links/` |
 | `now` | `/now` | `now/` |
+| `contact` | `/contact` | `contact/` |
 | `resume` | `/resume` | `resume/` |
+| `this` | `/this` | `this/` |
+| `scratch` | `/scratch` | `scratch/` |
+| `ops` | `/ops` | `ops/` |
 | `store` | `/store` | `store/` |
 
 ## Build checks
@@ -45,7 +53,7 @@ Run all Astro builds before publishing generated artifacts:
 for surface in public-root lab notes signal; do
   (cd "$surface" && npm ci && npm run build)
 done
-for surface in links now resume store; do
+for surface in links now contact resume this scratch ops store; do
   test -f "$surface/index.html"
 done
 ```
@@ -79,7 +87,11 @@ The generated branch should use this layout:
   wiki/                      # from notes/dist/
   links/                     # from links/
   now/                       # from now/
+  contact/                   # from contact/
   resume/                    # from resume/
+  this/                      # from this/
+  scratch/                   # from scratch/
+  ops/                       # from ops/
   store/                     # from store/
 ```
 
@@ -103,7 +115,11 @@ At minimum check:
 - `https://wiki.hellointernet.lol/`
 - `https://links.hellointernet.lol/`
 - `https://now.hellointernet.lol/`
+- `https://contact.hellointernet.lol/`
 - `https://resume.hellointernet.lol/`
+- `https://this.hellointernet.lol/`
+- `https://scratch.hellointernet.lol/`
+- `https://ops.hellointernet.lol/`
 - `https://store.hellointernet.lol/`
 - CSS/JS assets for each Astro surface
 
@@ -111,4 +127,5 @@ At minimum check:
 
 - Whether Porkbun GitHub Connect reliably syncs from the generated `porkbun-deploy` branch.
 - Whether `artifacts.hellointernet.lol` should remain a redirect to `/work/` or become a dedicated surface later.
+- Whether `contact`, `this`, `scratch`, and `ops` are all mapped in Porkbun yet; if not, the generated folders are ready but live DNS/hosting still needs to point at them.
 - Whether redirect-only surfaces are served correctly as Porkbun static files or should move to DNS/hosting redirects.

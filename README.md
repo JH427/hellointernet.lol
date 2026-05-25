@@ -70,6 +70,8 @@ This is not a feed or a blog.
 
 This surface is allowed to be incomplete.
 
+Current state: intentionally deferred. wiki.hellointernet.lol remains the canonical public notes surface unless scratch develops a distinct audience or format.
+
 ---
 
 ### `links.hellointernet.lol`
@@ -104,6 +106,8 @@ Not part of site navigation.
 
 This consolidates all “do something” actions into one place.
 
+Current state: built as a static command-glass surface. Public CTA is email first; scheduling happens by reply, not via a public calendar widget.
+
 ---
 
 ### `now.hellointernet.lol`
@@ -127,6 +131,8 @@ Optional, but powerful.
 
 Only exists if it adds clarity.
 
+Current state: built as a static explainer for the multi-surface model.
+
 ---
 
 ### `ops.hellointernet.lol` (optional)
@@ -138,6 +144,8 @@ Only exists if it adds clarity.
 - Admin links
 
 May remain obscure or private.
+
+Current state: public boundary page only. Actual runbooks remain off the public web unless intentionally published.
 
 ---
 
