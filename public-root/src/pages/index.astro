@@ -1,252 +1,396 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+
+const routes = [
+  {
+    label: 'work',
+    href: '/work',
+    description: 'artifacts and proof from shipped systems work',
+  },
+  {
+    label: 'hire',
+    href: '/hire',
+    description: 'scope, fit, constraints, and direct contact',
+  },
+  {
+    label: 'lab',
+    href: 'https://lab.hellointernet.lol',
+    description: 'prototypes, experiments, and half-dangerous ideas',
+    external: true,
+  },
+  {
+    label: 'signal',
+    href: 'https://signal.hellointernet.lol',
+    description: 'curated references, inputs, and things worth tracking',
+    external: true,
+  },
+  {
+    label: 'wiki',
+    href: 'https://wiki.hellointernet.lol',
+    description: 'notes, public memory, and structured fragments',
+    external: true,
+  },
+  {
+    label: 'links',
+    href: 'https://links.hellointernet.lol',
+    description: 'identity router for the rest of the network',
+    external: true,
+  },
+];
+
+const sideRoutes = [
+  { label: 'resume', href: '/resume' },
+  { label: 'now', href: 'https://now.hellointernet.lol', external: true },
+  { label: 'faq', href: '/about/faq' },
+  { label: 'no', href: '/about/no' },
+];
 ---
 
 <BaseLayout title="hellointernet.lol">
-  <div id="graph-container"></div>
-  <div class="node-tooltip" id="tooltip"></div>
+  <div class="ambient-home">
+    <div class="ambient-canvas" id="ambient-canvas" aria-hidden="true"></div>
+    <div class="ambient-vignette" aria-hidden="true"></div>
+
+    <section class="home-hero cg-panel">
+      <div class="cg-kicker">hellointernet.lol</div>
+      <h1 class="ambient-headline">Proof over posture.</h1>
+      <p class="ambient-subhead">
+        A dark little network of work, experiments, references, and current signals.
+      </p>
+
+      <div class="hero-status cg-meta" aria-label="Site status">
+        <span class="cg-status active">live surface</span>
+        <span class="cg-status draft">managed by AI agents</span>
+        <span class="hero-status-note">current shape: systems, artifacts, controlled weirdness</span>
+      </div>
+    </section>
+
+    <section class="home-routes" aria-labelledby="route-grid-heading">
+      <div class="sr-only" id="route-grid-heading">Primary routes</div>
+      <div class="route-grid ambient-route-grid">
+        {routes.map((route) => (
+          <a class="cg-card cg-card-link ambient-route-card" href={route.href} target={route.external ? '_blank' : undefined} rel={route.external ? 'noreferrer' : undefined}>
+            <div class="ambient-route-label mono">{route.label}{route.external ? ' ↗' : ''}</div>
+            <p>{route.description}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="home-secondary cg-text-slab">
+      <div class="cg-kicker">secondary routes</div>
+      <div class="surface-pills">
+        {sideRoutes.map((route) => (
+          <a class="cg-pill" href={route.href} target={route.external ? '_blank' : undefined} rel={route.external ? 'noreferrer' : undefined}>
+            {route.label}{route.external ? ' ↗' : ''}
+          </a>
+        ))}
+      </div>
+    </section>
+  </div>
 </BaseLayout>
 
 <style>
-  #graph-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 0;
-    cursor: grab;
-  }
-
-  #graph-container:active {
-    cursor: grabbing;
-  }
-
-  .node-tooltip {
-    position: fixed;
-    pointer-events: none;
-    z-index: 10;
-    background: var(--cg-bg-2);
-    border: 1px solid var(--cg-border-strong);
-    color: var(--cg-text);
-    padding: 0.4rem 0.75rem;
-    border-radius: var(--cg-radius);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.8rem;
-    opacity: 0;
-    transition: opacity 0.15s ease;
-    transform: translate(-50%, -120%);
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
     white-space: nowrap;
+    border: 0;
   }
 
-  .node-tooltip.visible {
-    opacity: 1;
+  .ambient-home {
+    position: relative;
+    isolation: isolate;
+    min-height: calc(100vh - 132px);
+    display: grid;
+    gap: 1.5rem;
+    align-content: start;
+    padding-top: clamp(1rem, 2vw, 2rem);
   }
 
-  /* Hide nav and footer on the homepage */
-  :global(.cg-nav) {
-    display: none;
+  .ambient-canvas,
+  .ambient-vignette {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
   }
 
-  :global(.site-footer) {
-    display: none;
+  .ambient-canvas {
+    z-index: -2;
+  }
+
+  .ambient-vignette {
+    z-index: -1;
+    background:
+      radial-gradient(circle at 20% 18%, rgba(131, 165, 152, 0.1), transparent 28%),
+      radial-gradient(circle at 76% 24%, rgba(250, 189, 47, 0.08), transparent 22%),
+      linear-gradient(180deg, rgba(11, 12, 11, 0.12) 0%, rgba(11, 12, 11, 0.72) 68%, rgba(11, 12, 11, 0.94) 100%);
+  }
+
+  .home-hero,
+  .home-secondary {
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(12px);
+  }
+
+  .home-hero {
+    width: min(100%, 760px);
+    background: linear-gradient(180deg, rgba(17, 18, 15, 0.82), rgba(11, 12, 11, 0.72));
+    border-color: rgba(250, 189, 47, 0.24);
+    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.28);
+  }
+
+  .ambient-headline {
+    max-width: 10ch;
+    margin-top: 0.9rem;
+    font-size: clamp(2.8rem, 10vw, 6.4rem);
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+  }
+
+  .ambient-subhead {
+    max-width: 56ch;
+    margin: 1.35rem 0 0;
+    font-size: clamp(1.05rem, 2vw, 1.18rem);
+    color: var(--cg-text-2);
+  }
+
+  .hero-status {
+    margin-top: 1.6rem;
+    gap: 0.75rem;
+  }
+
+  .hero-status-note {
+    color: var(--cg-muted);
+  }
+
+  .home-routes {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 1040px);
+  }
+
+  .ambient-route-grid {
+    margin-top: 0;
+  }
+
+  .ambient-route-card {
+    min-height: 150px;
+    background: linear-gradient(180deg, rgba(18, 18, 15, 0.82), rgba(12, 12, 10, 0.68));
+    transition:
+      transform 0.18s ease,
+      border-color 0.18s ease,
+      background 0.18s ease,
+      box-shadow 0.18s ease;
+  }
+
+  .ambient-route-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--cg-border-strong);
+    background: linear-gradient(180deg, rgba(22, 22, 18, 0.88), rgba(12, 12, 10, 0.78));
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+  }
+
+  .ambient-route-label {
+    margin-bottom: 0.7rem;
+    color: var(--cg-text);
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .ambient-route-card p {
+    margin: 0;
+    max-width: 28ch;
+    color: var(--cg-text-2);
+    line-height: 1.5;
+  }
+
+  .home-secondary {
+    width: min(100%, 720px);
+    background: rgba(17, 18, 15, 0.72);
+  }
+
+  @media (max-width: 820px) {
+    .ambient-home {
+      min-height: auto;
+    }
+
+    .hero-status {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ambient-route-card {
+      transition: none;
+    }
+
+    .ambient-route-card:hover {
+      transform: none;
+    }
   }
 </style>
 
 <script>
   import * as THREE from 'three';
-  import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
-  const nodes = [
-    { id: 'home', label: 'hellointernet.lol', url: '/', x: 0, y: 0, z: 0 },
-    { id: 'work', label: 'work', url: '/work', x: 3, y: 1, z: 0 },
-    { id: 'hire', label: 'hire', url: '/hire', x: -3, y: 1, z: 0 },
-    { id: 'resume', label: 'resume', url: '/resume', x: -2, y: -1, z: 1 },
-    { id: 'no', label: 'no list', url: '/about/no', x: 2, y: -1, z: 1 },
-    { id: 'faq', label: 'faq', url: '/about/faq', x: 0, y: 2, z: -1 },
-    { id: 'lab', label: 'lab', url: 'https://lab.hellointernet.lol', x: -4, y: 0, z: -1, external: true },
-    { id: 'wiki', label: 'wiki', url: 'https://wiki.hellointernet.lol', x: 4, y: 0, z: -1, external: true },
-    { id: 'signal', label: 'signal', url: 'https://signal.hellointernet.lol', x: -1, y: -3, z: 0, external: true },
-    { id: 'links', label: 'links', url: 'https://links.hellointernet.lol', x: 1, y: -3, z: 0, external: true },
-    { id: 'now', label: 'now', url: 'https://now.hellointernet.lol', x: -3, y: -2, z: -1, external: true },
-    { id: 'store', label: 'store', url: 'https://store.hellointernet.lol', x: 3, y: -2, z: -1, external: true },
-  ];
+  const mount = document.getElementById('ambient-canvas');
 
-  const edges = [
-    ['home', 'work'], ['home', 'hire'], ['home', 'resume'],
-    ['home', 'no'], ['home', 'faq'],
-    ['home', 'lab'], ['home', 'wiki'],
-    ['home', 'signal'], ['home', 'links'],
-    ['home', 'now'], ['home', 'store'],
-  ];
+  if (mount && window.matchMedia('(prefers-reduced-motion: reduce)').matches === false) {
+    let renderer;
 
-  const accentColor = 0xFABD2F;
-  const textColor = 0xEBDBB2;
-  const mutedColor = 0x928374;
-  const greenColor = 0x8EC07C;
-  const bgColor = 0x0B0C0B;
+    try {
+      const scene = new THREE.Scene();
+      scene.fog = new THREE.FogExp2(0x0b0c0b, 0.055);
 
-  const scene = new THREE.Scene();
-  scene.background = new THREE.Color(bgColor);
+      const camera = new THREE.PerspectiveCamera(48, window.innerWidth / window.innerHeight, 0.1, 100);
+      camera.position.set(0, 0.8, 15);
 
-  const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-  camera.position.set(0, 2, 12);
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.8));
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      mount.appendChild(renderer.domElement);
 
-  const renderer = new THREE.WebGLRenderer({ antialias: true });
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  document.getElementById('graph-container').appendChild(renderer.domElement);
+      scene.add(new THREE.AmbientLight(0xf4efe0, 0.42));
 
-  const controls = new OrbitControls(camera, renderer.domElement);
-  controls.enableDamping = true;
-  controls.dampingFactor = 0.05;
-  controls.minDistance = 5;
-  controls.maxDistance = 25;
-  controls.enablePan = false;
+      const keyLight = new THREE.DirectionalLight(0xfabd2f, 0.85);
+      keyLight.position.set(7, 9, 10);
+      scene.add(keyLight);
 
-  // Starfield
-  const starGeo = new THREE.BufferGeometry();
-  const starCount = 2000;
-  const starPos = new Float32Array(starCount * 3);
-  for (let i = 0; i < starCount * 3; i++) {
-    starPos[i] = (Math.random() - 0.5) * 200;
-  }
-  starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
-  const starMat = new THREE.PointsMaterial({ color: mutedColor, size: 0.15, sizeAttenuation: true });
-  scene.add(new THREE.Points(starGeo, starMat));
+      const rimLight = new THREE.PointLight(0x83a598, 0.55, 40);
+      rimLight.position.set(-9, 4, -4);
+      scene.add(rimLight);
 
-  // Nodes
-  const nodeMap = new Map();
-  const raycaster = new THREE.Raycaster();
-  const mouse = new THREE.Vector2();
+      const geometryField = new THREE.Group();
+      const latticeMaterial = new THREE.LineBasicMaterial({
+        color: 0x928374,
+        transparent: true,
+        opacity: 0.22,
+      });
 
-  nodes.forEach((node) => {
-    const group = new THREE.Group();
+      const solidMaterial = new THREE.MeshBasicMaterial({
+        color: 0x83a598,
+        transparent: true,
+        opacity: 0.05,
+        wireframe: false,
+      });
 
-    const glowGeo = new THREE.SphereGeometry(node.id === 'home' ? 0.65 : 0.45, 32, 32);
-    const glowMat = new THREE.MeshBasicMaterial({
-      color: node.external ? greenColor : accentColor,
-      transparent: true,
-      opacity: 0.15,
-    });
-    const glow = new THREE.Mesh(glowGeo, glowMat);
-    group.add(glow);
+      const polyhedra = [];
+      const polyTypes = [
+        new THREE.OctahedronGeometry(1.05, 0),
+        new THREE.TetrahedronGeometry(1.2, 0),
+        new THREE.IcosahedronGeometry(0.95, 0),
+      ];
 
-    const geo = new THREE.SphereGeometry(node.id === 'home' ? 0.4 : 0.28, 32, 32);
-    const mat = new THREE.MeshStandardMaterial({
-      color: node.id === 'home' ? accentColor : (node.external ? greenColor : textColor),
-      emissive: node.external ? greenColor : accentColor,
-      emissiveIntensity: node.id === 'home' ? 0.4 : 0.15,
-      roughness: 0.3,
-      metalness: 0.4,
-    });
-    const mesh = new THREE.Mesh(geo, mat);
-    group.add(mesh);
+      for (let i = 0; i < 12; i += 1) {
+        const type = polyTypes[i % polyTypes.length];
+        const wire = new THREE.LineSegments(new THREE.EdgesGeometry(type), latticeMaterial.clone());
+        const fill = new THREE.Mesh(type, solidMaterial.clone());
+        const group = new THREE.Group();
+        group.add(fill);
+        group.add(wire);
 
-    // Label sprite
-    const canvas = document.createElement('canvas');
-    canvas.width = 512;
-    canvas.height = 64;
-    const ctx = canvas.getContext('2d');
-    ctx.font = 'bold 32px monospace';
-    ctx.fillStyle = node.external ? '#8EC07C' : '#EBDBB2';
-    ctx.textAlign = 'center';
-    ctx.fillText(node.label, 256, 42);
-    const texture = new THREE.CanvasTexture(canvas);
-    const spriteMat = new THREE.SpriteMaterial({ map: texture, transparent: true, depthTest: false });
-    const sprite = new THREE.Sprite(spriteMat);
-    sprite.scale.set(4, 0.5, 1);
-    sprite.position.y = node.id === 'home' ? 0.9 : 0.7;
-    group.add(sprite);
+        const radius = 5 + Math.random() * 6;
+        const angle = (i / 12) * Math.PI * 2;
+        group.position.set(
+          Math.cos(angle) * radius * (0.8 + Math.random() * 0.4),
+          (Math.random() - 0.5) * 5.2,
+          (Math.random() - 0.5) * 10
+        );
+        group.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI);
+        group.scale.setScalar(0.75 + Math.random() * 0.85);
 
-    group.position.set(node.x * 2.2, node.y * 2.2, node.z * 2.2);
-    scene.add(group);
-    nodeMap.set(node.id, { group, mesh, glow, node, sprite });
-  });
+        geometryField.add(group);
+        polyhedra.push({
+          group,
+          speed: 0.0015 + Math.random() * 0.0025,
+          drift: 0.12 + Math.random() * 0.22,
+        });
+      }
 
-  // Edges
-  edges.forEach(([from, to]) => {
-    const a = nodeMap.get(from).group.position;
-    const b = nodeMap.get(to).group.position;
-    const points = [a.clone(), b.clone()];
-    const geo = new THREE.BufferGeometry().setFromPoints(points);
-    const mat = new THREE.LineBasicMaterial({ color: mutedColor, transparent: true, opacity: 0.25 });
-    scene.add(new THREE.Line(geo, mat));
-  });
+      const latticePoints = [];
+      for (let i = 0; i < polyhedra.length - 1; i += 1) {
+        if (i % 2 === 0) {
+          latticePoints.push(polyhedra[i].group.position, polyhedra[i + 1].group.position);
+        }
+      }
+      const lattice = new THREE.BufferGeometry().setFromPoints(latticePoints);
+      geometryField.add(new THREE.LineSegments(lattice, new THREE.LineBasicMaterial({ color: 0x83a598, transparent: true, opacity: 0.08 })));
 
-  // Lighting
-  scene.add(new THREE.AmbientLight(0xffffff, 0.4));
-  const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
-  dirLight.position.set(5, 10, 7);
-  scene.add(dirLight);
-  const pointLight = new THREE.PointLight(accentColor, 1, 30);
-  pointLight.position.set(0, 0, 0);
-  scene.add(pointLight);
+      scene.add(geometryField);
 
-  // Hover and click
-  const tooltip = document.getElementById('tooltip');
-  let hoveredNode = null;
+      const particleCount = 560;
+      const particlePositions = new Float32Array(particleCount * 3);
+      for (let i = 0; i < particleCount; i += 1) {
+        particlePositions[i * 3] = (Math.random() - 0.5) * 38;
+        particlePositions[i * 3 + 1] = (Math.random() - 0.5) * 24;
+        particlePositions[i * 3 + 2] = (Math.random() - 0.5) * 32;
+      }
+      const particlesGeometry = new THREE.BufferGeometry();
+      particlesGeometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+      const particles = new THREE.Points(
+        particlesGeometry,
+        new THREE.PointsMaterial({
+          color: 0xebdbb2,
+          size: 0.045,
+          transparent: true,
+          opacity: 0.7,
+          sizeAttenuation: true,
+        })
+      );
+      scene.add(particles);
 
-  function onMouseMove(e) {
-    mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
-    raycaster.setFromCamera(mouse, camera);
+      let targetX = 0;
+      let targetY = 0;
 
-    const meshes = Array.from(nodeMap.values()).map(v => v.mesh);
-    const intersects = raycaster.intersectObjects(meshes);
+      const onPointerMove = (event) => {
+        targetX = (event.clientX / window.innerWidth - 0.5) * 0.9;
+        targetY = (event.clientY / window.innerHeight - 0.5) * 0.45;
+      };
 
-    if (intersects.length > 0) {
-      const mesh = intersects[0].object;
-      const entry = Array.from(nodeMap.values()).find(v => v.mesh === mesh);
-      if (entry) {
-        hoveredNode = entry;
-        document.body.style.cursor = 'pointer';
-        tooltip.textContent = entry.node.external ? `${entry.node.label} ↗` : entry.node.label;
-        tooltip.style.left = e.clientX + 'px';
-        tooltip.style.top = e.clientY + 'px';
-        tooltip.classList.add('visible');
-        entry.glow.material.opacity = 0.4;
-        entry.mesh.material.emissiveIntensity = 0.5;
-        return;
+      const onResize = () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      };
+
+      window.addEventListener('pointermove', onPointerMove, { passive: true });
+      window.addEventListener('resize', onResize);
+
+      let frame = 0;
+      const animate = () => {
+        frame += 1;
+        geometryField.rotation.y += 0.0009;
+        geometryField.rotation.x += (targetY - geometryField.rotation.x) * 0.012;
+        geometryField.rotation.z += (targetX * 0.12 - geometryField.rotation.z) * 0.012;
+
+        polyhedra.forEach((entry, index) => {
+          entry.group.rotation.x += entry.speed;
+          entry.group.rotation.y -= entry.speed * 0.7;
+          entry.group.position.y += Math.sin(frame * entry.speed * 24 + index) * 0.0025 * entry.drift;
+        });
+
+        particles.rotation.y += 0.00018;
+        particles.rotation.x = targetY * 0.14;
+
+        renderer.render(scene, camera);
+        requestAnimationFrame(animate);
+      };
+
+      animate();
+    } catch (error) {
+      console.warn('Ambient homepage background disabled:', error);
+      if (renderer?.domElement?.parentNode) {
+        renderer.domElement.parentNode.removeChild(renderer.domElement);
       }
     }
-
-    if (hoveredNode) {
-      hoveredNode.glow.material.opacity = 0.15;
-      hoveredNode.mesh.material.emissiveIntensity = hoveredNode.node.id === 'home' ? 0.4 : 0.15;
-      hoveredNode = null;
-    }
-    document.body.style.cursor = '';
-    tooltip.classList.remove('visible');
   }
-
-  function onClick() {
-    if (hoveredNode) {
-      window.location.href = hoveredNode.node.url;
-    }
-  }
-
-  renderer.domElement.addEventListener('mousemove', onMouseMove);
-  renderer.domElement.addEventListener('click', onClick);
-
-  window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-  });
-
-  let t = 0;
-  function animate() {
-    requestAnimationFrame(animate);
-    t += 0.005;
-    const home = nodeMap.get('home');
-    if (home) {
-      home.group.position.y = Math.sin(t) * 0.15;
-    }
-    controls.update();
-    renderer.render(scene, camera);
-  }
-  animate();
 </script>
