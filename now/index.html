@@ -8,47 +8,23 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/command-glass.css">
-  <style>
-    .utility-shell {
-      display: block;
-      max-width: 760px;
-    }
-
-    .utility-panel {
-      margin: 0 auto;
-    }
-
-    .utility-panel .cg-command span {
-      min-width: 0;
-      overflow-wrap: anywhere;
-    }
-  </style>
 </head>
 <body>
-  <main class="cg-shell utility-shell">
-    <section class="cg-main">
-      <article class="cg-text-slab utility-panel">
-        <div class="cg-kicker">current status / manual</div>
-        <h1>Now</h1>
-        <h2>Now</h2>
-        <ul>
-          <li>Example: shipping small utilities for hellointernet</li>
-          <li>Example: refining lab experiments 001-002</li>
-          <li>Example: keeping meetings to a minimum</li>
-        </ul>
-        <h2>Not now</h2>
-        <ul>
-          <li>Example: no new integrations until current stack is stable</li>
-          <li>Example: ignoring cosmetic polish in favor of utility</li>
-        </ul>
-        <h2>Direction</h2>
-        <ul>
-          <li>Example: converge on one dependable delivery pipeline</li>
-          <li>Example: ship or archive experiments quickly</li>
-        </ul>
-        <p><a class="cg-root-link" href="https://hellointernet.lol">back to root</a></p>
-      </article>
-    </section>
+  <nav class="cg-nav">
+    <div class="cg-nav-inner">
+      <a href="/" class="cg-brand">now.hellointernet.lol</a>
+      <div class="cg-nav-group">
+        <a href="https://hellointernet.lol" class="cg-nav-link">root</a>
+      </div>
+    </div>
+  </nav>
+  <main class="cg-main utility-main">
+    <div class="cg-panel" style="max-width:760px;">
+      <div class="cg-kicker">current status</div>
+      <h1>Now</h1>
+      <p>Being curated.</p>
+      <a class="cg-root-link" href="https://hellointernet.lol" style="display:inline-block;margin-top:1rem;">back to root</a>
+    </div>
   </main>
 </body>
 </html>

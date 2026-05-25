@@ -19,18 +19,18 @@ const currentPath = Astro.url.pathname;
     <title>{title}</title>
   </head>
   <body>
-    <div class="cg-shell">
-      <nav class="cg-nav" aria-label="Wiki">
+    <nav class="cg-nav" aria-label="Wiki">
+      <div class="cg-nav-inner">
         <a href="/" class="cg-brand">wiki.hellointernet.lol</a>
         <div class="cg-nav-group">
-          <div class="cg-nav-label">Surface</div>
+          <span class="cg-nav-label">Surface</span>
           <a href="/" class:list={['cg-nav-link', { active: currentPath === '/' }]}>index</a>
           <a href="https://hellointernet.lol" class="cg-nav-link">root</a>
         </div>
-      </nav>
-      <main class="cg-main">
-        <slot />
-      </main>
-    </div>
+      </div>
+    </nav>
+    <main class="cg-main">
+      <slot />
+    </main>
   </body>
 </html>

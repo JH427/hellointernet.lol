@@ -4,6 +4,7 @@ interface Props {
 }
 
 const { title = 'signal.hellointernet.lol' } = Astro.props;
+const currentPath = Astro.url.pathname;
 ---
 
 <!doctype html>
@@ -18,18 +19,18 @@ const { title = 'signal.hellointernet.lol' } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <div class="cg-shell">
-      <nav class="cg-nav" aria-label="Signal">
+    <nav class="cg-nav" aria-label="Signal">
+      <div class="cg-nav-inner">
         <a href="/" class="cg-brand">signal.hellointernet.lol</a>
         <div class="cg-nav-group">
-          <div class="cg-nav-label">Surface</div>
-          <a href="/" class="cg-nav-link active">index</a>
+          <span class="cg-nav-label">Surface</span>
+          <a href="/" class:list={['cg-nav-link', { active: currentPath === '/' }]}>index</a>
           <a href="https://hellointernet.lol" class="cg-nav-link">root</a>
         </div>
-      </nav>
-      <main class="cg-main">
-        <slot />
-      </main>
-    </div>
+      </div>
+    </nav>
+    <main class="cg-main">
+      <slot />
+    </main>
   </body>
 </html>
