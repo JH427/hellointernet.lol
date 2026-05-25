@@ -36,6 +36,21 @@ write_redirect() {
     <meta http-equiv="refresh" content="0; url=$target">
     <link rel="canonical" href="$target">
     <link rel="stylesheet" href="/command-glass.css">
+    <style>
+      .utility-shell {
+        display: block;
+        max-width: 760px;
+      }
+
+      .utility-panel {
+        margin: 0 auto;
+      }
+
+      .utility-panel .cg-command span {
+        min-width: 0;
+        overflow-wrap: anywhere;
+      }
+    </style>
     <title>$title</title>
   </head>
   <body>
