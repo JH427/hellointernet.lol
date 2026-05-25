@@ -26,6 +26,7 @@ write_redirect() {
   local target="$2"
   local title="$3"
   mkdir -p "$dest"
+  cp "$ROOT/shared/command-glass.css" "$dest/command-glass.css"
   cat > "$dest/index.html" <<HTML
 <!doctype html>
 <html lang="en">
@@ -34,10 +35,20 @@ write_redirect() {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="refresh" content="0; url=$target">
     <link rel="canonical" href="$target">
+    <link rel="stylesheet" href="/command-glass.css">
     <title>$title</title>
   </head>
   <body>
-    <p>Redirecting to <a href="$target">$target</a>.</p>
+    <main class="cg-shell utility-shell">
+      <section class="cg-main">
+        <div class="cg-panel utility-panel">
+          <div class="cg-kicker">redirect / artifacts</div>
+          <h1>Opening artifacts</h1>
+          <p>Redirecting to the canonical work index.</p>
+          <a class="cg-command" href="$target"><span>\$ continue</span><span>$target</span></a>
+        </div>
+      </section>
+    </main>
   </body>
 </html>
 HTML
