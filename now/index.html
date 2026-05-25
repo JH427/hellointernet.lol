@@ -9,11 +9,61 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/command-glass.css">
+  <style>
+    .surface-wrap {
+      max-width: 920px;
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    .surface-hero {
+      background: linear-gradient(180deg, rgba(17, 18, 15, 0.84), rgba(11, 12, 11, 0.74));
+      border-color: rgba(131, 165, 152, 0.22);
+    }
+
+    .surface-hero h1 {
+      margin-top: 0.85rem;
+      font-size: clamp(2.35rem, 8vw, 4.8rem);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      max-width: 11ch;
+    }
+
+    .surface-hero p {
+      max-width: 58ch;
+      font-size: 1.05rem;
+    }
+
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .status-card h2 {
+      margin-bottom: 0.55rem;
+      font-size: 1rem;
+    }
+
+    .status-card p,
+    .status-card li {
+      color: var(--cg-text-2);
+    }
+
+    .status-card ul {
+      margin: 0.75rem 0 0 1.1rem;
+      padding: 0;
+    }
+
+    .status-card li + li {
+      margin-top: 0.35rem;
+    }
+  </style>
 </head>
 <body>
   <nav class="cg-nav" aria-label="Now">
     <div class="cg-nav-inner">
-      <a href="/" class="cg-brand">now.hellointernet.lol</a>
+      <a href="https://hellointernet.lol" class="cg-brand">now.hellointernet.lol</a>
 
       <a href="https://hellointernet.lol/work" class="cg-nav-link">work</a>
       <a href="https://hellointernet.lol/hire" class="cg-nav-link">hire</a>
@@ -30,9 +80,62 @@
   </nav>
 
   <main class="cg-main">
-    <h1>Now</h1>
-    <p>Being curated.</p>
-    <a class="cg-root-link" href="https://hellointernet.lol" style="display:inline-block;margin-top:1rem;">back to root</a>
+    <div class="surface-wrap">
+      <section class="cg-panel surface-hero">
+        <div class="cg-kicker">current state</div>
+        <h1>What the system is doing now.</h1>
+        <p>
+          Current focus is tightening the public surfaces, making the weird parts legible, and turning scattered experiments into something that reads like one coherent practice.
+        </p>
+        <div class="cg-meta">
+          <span class="cg-status in-progress">active revision</span>
+          <span class="cg-status active">public-facing cleanup</span>
+          <span>less placeholder energy, more evidence</span>
+        </div>
+      </section>
+
+      <section class="status-grid">
+        <article class="cg-card status-card">
+          <div class="cg-kicker">primary work</div>
+          <h2>Website unification</h2>
+          <p>Bringing root, links, now, lab, signal, and wiki into the same visual and editorial language.</p>
+        </article>
+
+        <article class="cg-card status-card">
+          <div class="cg-kicker">operating constraint</div>
+          <h2>Less theater</h2>
+          <p>Anything that feels too synthetic, inflated, or portfolio-template-ish gets cut or rewritten.</p>
+        </article>
+
+        <article class="cg-card status-card">
+          <div class="cg-kicker">watch list</div>
+          <h2>What is being shaped</h2>
+          <ul>
+            <li>homepage and utility-surface consistency</li>
+            <li>real artifacts over demo framing</li>
+            <li>clearer paths into work, lab, and contact</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="cg-panel">
+        <div class="cg-kicker">next exits</div>
+        <div class="cg-list">
+          <a class="cg-command" href="https://hellointernet.lol/">
+            <span>$ backtrack</span>
+            <span>hellointernet.lol/</span>
+          </a>
+          <a class="cg-command" href="https://hellointernet.lol/work/">
+            <span>$ inspect</span>
+            <span>hellointernet.lol/work/</span>
+          </a>
+          <a class="cg-command" href="https://links.hellointernet.lol/">
+            <span>$ route</span>
+            <span>links.hellointernet.lol/</span>
+          </a>
+        </div>
+      </section>
+    </div>
   </main>
 
   <footer class="site-footer">

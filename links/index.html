@@ -9,11 +9,57 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/command-glass.css">
+  <style>
+    .surface-wrap {
+      max-width: 900px;
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    .surface-hero {
+      background: linear-gradient(180deg, rgba(17, 18, 15, 0.84), rgba(11, 12, 11, 0.74));
+      border-color: rgba(250, 189, 47, 0.24);
+    }
+
+    .surface-hero h1 {
+      margin-top: 0.85rem;
+      font-size: clamp(2.35rem, 8vw, 4.8rem);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      max-width: 12ch;
+    }
+
+    .surface-hero p {
+      max-width: 56ch;
+      font-size: 1.05rem;
+    }
+
+    .surface-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .surface-card h2 {
+      margin-bottom: 0.65rem;
+      font-size: 1rem;
+    }
+
+    .surface-card p {
+      margin-bottom: 0;
+      color: var(--cg-text-2);
+    }
+
+    .command-stack {
+      display: grid;
+      gap: 0.85rem;
+    }
+  </style>
 </head>
 <body>
   <nav class="cg-nav" aria-label="Links">
     <div class="cg-nav-inner">
-      <a href="/" class="cg-brand">links.hellointernet.lol</a>
+      <a href="https://hellointernet.lol" class="cg-brand">links.hellointernet.lol</a>
 
       <a href="https://hellointernet.lol/work" class="cg-nav-link">work</a>
       <a href="https://hellointernet.lol/hire" class="cg-nav-link">hire</a>
@@ -30,22 +76,69 @@
   </nav>
 
   <main class="cg-main">
-    <h1>links</h1>
-    <p>Being curated. Check back or look around the root.</p>
+    <div class="surface-wrap">
+      <section class="cg-panel surface-hero">
+        <div class="cg-kicker">identity router</div>
+        <h1>Useful exits. Minimal theater.</h1>
+        <p>
+          This is the short list: where to look, where to write, and where the rest of the network branches.
+        </p>
+        <div class="cg-meta">
+          <span class="cg-status active">public links</span>
+          <span class="cg-status draft">kept intentionally sparse</span>
+          <span>best starting points only</span>
+        </div>
+      </section>
 
-    <div class="cg-list" style="margin-top:1.5rem;">
-      <a class="cg-command" href="https://github.com/JH427" target="_blank" rel="noopener noreferrer">
-        <span>$ open</span>
-        <span>github.com/JH427</span>
-      </a>
-      <a class="cg-command" href="mailto:joshua@fullyautomated.enterprises">
-        <span>$ compose</span>
-        <span>joshua@fullyautomated.enterprises</span>
-      </a>
-      <a class="cg-command" href="https://hellointernet.lol">
-        <span>$ open</span>
-        <span>hellointernet.lol</span>
-      </a>
+      <section class="surface-grid">
+        <article class="cg-card surface-card">
+          <div class="cg-kicker">direct contact</div>
+          <h2>Talk to a human</h2>
+          <p>Email is still the cleanest path for real work, introductions, and decisions.</p>
+        </article>
+
+        <article class="cg-card surface-card">
+          <div class="cg-kicker">public traces</div>
+          <h2>See artifacts</h2>
+          <p>Use the root site, work index, and GitHub when you want evidence instead of posture.</p>
+        </article>
+
+        <article class="cg-card surface-card">
+          <div class="cg-kicker">secondary surfaces</div>
+          <h2>Follow the network</h2>
+          <p>Lab, signal, wiki, and now each expose a different slice of the same operating system.</p>
+        </article>
+      </section>
+
+      <section class="cg-panel">
+        <div class="cg-kicker">jump table</div>
+        <div class="command-stack">
+          <a class="cg-command" href="mailto:joshua@fullyautomated.enterprises">
+            <span>$ compose</span>
+            <span>joshua@fullyautomated.enterprises</span>
+          </a>
+          <a class="cg-command" href="https://hellointernet.lol/work/">
+            <span>$ open</span>
+            <span>hellointernet.lol/work/</span>
+          </a>
+          <a class="cg-command" href="https://github.com/JH427" target="_blank" rel="noopener noreferrer">
+            <span>$ inspect</span>
+            <span>github.com/JH427</span>
+          </a>
+          <a class="cg-command" href="https://lab.hellointernet.lol/">
+            <span>$ branch</span>
+            <span>lab.hellointernet.lol/</span>
+          </a>
+          <a class="cg-command" href="https://signal.hellointernet.lol/">
+            <span>$ monitor</span>
+            <span>signal.hellointernet.lol/</span>
+          </a>
+          <a class="cg-command" href="https://wiki.hellointernet.lol/">
+            <span>$ trace</span>
+            <span>wiki.hellointernet.lol/</span>
+          </a>
+        </div>
+      </section>
     </div>
   </main>
 
