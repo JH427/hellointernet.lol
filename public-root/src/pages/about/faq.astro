@@ -3,78 +3,55 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const faqs = [
   {
-    question: "What do you actually do?",
-    answer: "I reduce complexity until progress becomes obvious. Sometimes that looks like software. Sometimes it looks like a decision."
+    question: 'What do you actually do?',
+    answer: 'I reduce complexity until movement becomes obvious. Sometimes that means software. Sometimes it means a better decision structure. Usually it means both.'
   },
   {
-    question: "Are you an AI consultant?",
-    answer: "No. I use AI the same way I use scripts, spreadsheets, or sharp knives; when it's the right tool."
+    question: 'Are you an AI consultant?',
+    answer: 'Not in the generic sense. I use AI when it helps produce a better system, not because the label itself is interesting.'
   },
   {
-    question: "Do you build or advise?",
-    answer: "Yes. Thinking without building is just theory. Building without thinking is expensive."
+    question: 'Do you build or advise?',
+    answer: 'Both, but not as separate theater categories. The point is to think clearly enough to build the right thing and build concretely enough to learn something real.'
   },
   {
-    question: "Who do you work best with?",
-    answer: "People who can decide. Founders, operators, and teams who feel friction and want it gone."
+    question: 'Who do you work best with?',
+    answer: 'Founders, operators, and technical teams that feel the friction directly and have enough authority to change what is causing it.'
   },
   {
-    question: "How do engagements usually start?",
-    answer: "Something is messy. Something is slow. Someone is tired of pretending it's OK."
+    question: 'How do engagements usually start?',
+    answer: 'A process is slow, a system is brittle, a product surface needs to ship, or a decision keeps stalling because nobody has made the real constraint visible yet.'
   },
   {
-    question: "What's your process?",
-    answer: "Find the constraint. Build around it. Remove myself as soon as possible."
-  },
+    question: 'What is the process?',
+    answer: 'Name the constraint, make the shape legible, build the smallest useful thing, and keep going only if reality says it is worth continuing.'
+  }
 ];
 ---
 
 <BaseLayout title="FAQ - hellointernet.lol">
-  <div class="faq-content">
-    <h1>FAQ</h1>
+  <div class="page-shell">
+    <section class="cg-panel page-hero">
+      <div class="cg-kicker">common questions</div>
+      <h1>Short answers to the obvious ones.</h1>
+      <p>
+        This page exists so the first conversation can start one layer deeper than title-decoding, tool-labeling, or agency-script small talk.
+      </p>
+      <div class="cg-meta">
+        <span class="cg-status active">plain language</span>
+        <span class="cg-status in-progress">anti-fluff</span>
+        <span>if you need more than this, email</span>
+      </div>
+    </section>
 
-    <div class="faq-list">
+    <section class="section-stack">
       {faqs.map((faq) => (
-        <div class="faq-item">
-          <h2 class="faq-question">{faq.question}</h2>
-          <p class="faq-answer">{faq.answer}</p>
-        </div>
+        <article class="cg-card page-card">
+          <div class="cg-kicker">q</div>
+          <h2>{faq.question}</h2>
+          <p>{faq.answer}</p>
+        </article>
       ))}
-    </div>
+    </section>
   </div>
 </BaseLayout>
-
-<style>
-  h1 {
-    margin-bottom: 2.5rem;
-  }
-
-  .faq-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .faq-item {
-    padding: 1.75rem 0;
-    border-bottom: 1px solid var(--cg-border);
-  }
-
-  .faq-item:last-child {
-    border-bottom: none;
-  }
-
-  .faq-question {
-    font-size: 1.0625rem;
-    font-weight: 500;
-    margin: 0 0 0.75rem;
-    color: var(--cg-text);
-  }
-
-  .faq-answer {
-    color: var(--cg-text-2);
-    font-size: 1.0625rem;
-    line-height: 1.6;
-    margin: 0;
-  }
-</style>

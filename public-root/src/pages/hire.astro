@@ -3,111 +3,95 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="Work with me - hellointernet.lol">
-  <div class="hire-content">
-    <h1>Work with me</h1>
+  <div class="page-shell">
+    <section class="cg-panel page-hero">
+      <div class="cg-kicker">engagement filter</div>
+      <h1>Bring me the constraint.</h1>
+      <p>
+        I work best when something real is stuck: a workflow that keeps eating time, a product surface that needs to ship,
+        or a decision bottleneck that needs structure instead of another meeting.
+      </p>
+      <div class="cg-meta">
+        <span class="cg-status active">build + diagnose</span>
+        <span class="cg-status in-progress">short path to signal</span>
+        <span>less discovery theater, more visible movement</span>
+      </div>
+    </section>
 
-    <p>I work with people who recognize friction and want it removed.</p>
-    <p><em>Not managed.</em></p>
-    <p><strong>Gone.</strong></p>
+    <section class="page-grid tight">
+      <article class="cg-card page-card">
+        <div class="cg-kicker">good fit</div>
+        <h2>Decision-makers with a real problem</h2>
+        <p>You know something is dragging, but the exact fix is still fuzzy. That is usually enough to start.</p>
+      </article>
 
-    <p>
-      This usually starts with something that's slowing you down:
-    </p>
-    <ul>
-      <li>a messy process, a missing tool</li>
-      <li>a decision that needs structure</li>
-      <li>a system that's quietly blocking progress</li>
-    </ul>
+      <article class="cg-card page-card">
+        <div class="cg-kicker">best work</div>
+        <h2>Custom systems over generic packages</h2>
+        <p>I help when the problem does not fit cleanly inside a standard agency process or off-the-shelf workflow.</p>
+      </article>
 
-    <p>
-      I help by building the thing that removes the constraint,
-      then stepping back.
-    </p>
+      <article class="cg-card page-card">
+        <div class="cg-kicker">handoff goal</div>
+        <h2>Remove the bottleneck, then get out of the way</h2>
+        <p>The point is not dependency. The point is a cleaner operating state than the one you started with.</p>
+      </article>
+    </section>
 
-    <h2>Good fit if</h2>
+    <section class="page-grid">
+      <article class="cg-card page-card">
+        <div class="cg-kicker">what usually shows up</div>
+        <ul class="bullet-list">
+          <li>a messy internal process with too many manual steps</li>
+          <li>a missing tool between people, systems, or decisions</li>
+          <li>an AI/product idea that needs implementation reality instead of hype language</li>
+          <li>a small team blocked by invisible technical debt or operational drag</li>
+        </ul>
+      </article>
 
-    <ul>
-      <li>You have a real problem, but the solution isn't obvious</li>
-      <li>You need something built that doesn't fit a standard template</li>
-      <li>You're tired of tools that create more work than they solve</li>
-      <li>You have the authority to decide and the urgency to move</li>
-    </ul>
+      <article class="cg-card page-card">
+        <div class="cg-kicker">not a fit</div>
+        <ul class="bullet-list">
+          <li>long discovery arcs with no artifact pressure</li>
+          <li>tool shopping without a defined constraint</li>
+          <li>work that is mostly alignment theater</li>
+          <li>teams that want certainty before they are willing to learn anything</li>
+        </ul>
+      </article>
+    </section>
 
-    <h2>Not a fit if</h2>
-
-    <ul>
-      <li>You want long discovery processes with no output</li>
-      <li>You're shopping for tools without a clear problem</li>
-      <li>The work requires endless alignment meetings</li>
-      <li>"Building" means talking about building</li>
-    </ul>
-
-    <h2>How to start</h2>
-
-    <p>
-      Send an email that includes:
-    </p>
-
-    <ul>
-      <li>What's not working</li>
-      <li>What good looks like</li>
-      <li>When you need it by</li>
-    </ul>
-
-    <p>
-      If it's a fit, we'll talk.
-      If it's not, I'll tell you quickly.
-    </p>
-
-    <div class="contact">
-      <a class="cg-command" href="mailto:joshua@fullyautomated.enterprises">
-        <span>$ contact</span>
-        <span>joshua@fullyautomated.enterprises</span>
-      </a>
-    </div>
+    <section class="cg-panel section-stack">
+      <div>
+        <div class="cg-kicker">starting packet</div>
+        <h2 class="section-title">The first email should include three things.</h2>
+      </div>
+      <div class="page-grid tight">
+        <article class="cg-card page-card">
+          <div class="cg-kicker">1</div>
+          <h3>What is not working</h3>
+          <p>Name the friction plainly. Slow is fine. Messy is fine. Vague pain is still useful.</p>
+        </article>
+        <article class="cg-card page-card">
+          <div class="cg-kicker">2</div>
+          <h3>What better would look like</h3>
+          <p>Not a perfect spec. Just the future state you wish existed.</p>
+        </article>
+        <article class="cg-card page-card">
+          <div class="cg-kicker">3</div>
+          <h3>When it matters</h3>
+          <p>Urgency changes shape. Deadlines, hiring windows, launches, or internal pressure all count.</p>
+        </article>
+      </div>
+      <div class="cg-list">
+        <a class="cg-command" href="mailto:joshua@fullyautomated.enterprises">
+          <span>$ contact</span>
+          <span>joshua@fullyautomated.enterprises</span>
+        </a>
+        <a class="cg-command" href="/work">
+          <span>$ inspect</span>
+          <span>hellointernet.lol/work/</span>
+        </a>
+      </div>
+    </section>
   </div>
 </BaseLayout>
-
-<style>
-  .hire-content {
-    max-width: none;
-  }
-
-  h1 {
-    margin-bottom: 2rem;
-  }
-
-  h2 {
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    font-size: 1.25rem;
-  }
-
-  .hire-content > p,
-  .hire-content > ul {
-    color: var(--cg-text-2);
-    font-size: 1.0625rem;
-    line-height: 1.6;
-  }
-
-  .hire-content ul {
-    margin: 1rem 0 1.5rem 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .hire-content li {
-    line-height: 1.6;
-  }
-
-  .contact {
-    margin-top: 2.5rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--cg-border);
-  }
-
-  .contact .cg-command {
-    flex-wrap: wrap;
-  }
-</style>

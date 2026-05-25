@@ -1,307 +1,201 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const experience = [
+  {
+    role: 'AI Engineer — ADP',
+    period: 'Apr 2026 - Present · Remote / contract',
+    bullets: [
+      'Build internal AI developer tooling across Python services, governed agent workflows, and enterprise-facing TypeScript surfaces.',
+      'Ship micro-frontend work in Stencil, Angular, and Nx monorepos for internal portals and AI tooling interfaces.',
+      'Support MCP and agent integration workflows so developers can discover, connect, and use governed AI capabilities inside existing systems.',
+      'Added Kiro CLI support to an internal skills/tooling marketplace, widening the coding-harness options available to enterprise teams.'
+    ]
+  },
+  {
+    role: 'Founder — Fully Automated Enterprises LLC',
+    period: '2021 - Present · Lawrenceville, GA / Remote',
+    bullets: [
+      'Use FAE as an R&D studio for autonomous operations, applied AI systems, and workflow automation that actually runs.',
+      'Build internal tools, orchestration patterns, and content/publication systems with LLMs, agents, Linux, Docker, and Cloudflare-secured services.',
+      'Treat experiments as operating artifacts: if a system is interesting, it has to survive contact with deployment, maintenance, and revision.'
+    ]
+  },
+  {
+    role: 'Technical Analyst — High Street Consulting, LLC',
+    period: '2022 - 2025 · Remote / USA',
+    bullets: [
+      'Served as the sole technical analyst supporting FEMA and DHS contract work across LMS administration, Microsoft 365, WordPress, and data systems.',
+      'Built VBA and Python automation that cut FEMA FQS course production time by roughly 60 percent.',
+      'Co-developed a CrewAI-based document generation workflow for HSEEP-compliant exercise and after-action reporting.',
+      'Served as Section 508 / WCAG accessibility SME, leading QA/QC training and compliance review work.'
+    ]
+  },
+  {
+    role: 'Data / IT Systems Roles — University of Georgia',
+    period: '2016 - 2022 · Athens, GA',
+    bullets: [
+      'Managed databases, reporting workflows, and internal tooling across research and operational environments.',
+      'Automated QA/QC reporting, ISO audit preparation, and open-records support with Python, SQL, JavaScript, and scripting-heavy glue work.',
+      'Supported staff through documentation, systems administration, and technical problem solving that had to work in real institutional constraints.'
+    ]
+  }
+];
+
+const systems = [
+  {
+    title: 'AI agent task orchestration API',
+    detail: 'Python, FastAPI, Redis, PostgreSQL, MinIO, Docker',
+    bullets: [
+      'Designed queued task-processing infrastructure for AI-driven search, fetch, and automation work.',
+      'Built REST endpoints for submission, status, cancellation, artifact retrieval, and deduplicated execution.'
+    ]
+  },
+  {
+    title: 'AI resume tailoring platform',
+    detail: 'Next.js, TypeScript, Supabase, OpenAI, FastAPI, Stripe',
+    bullets: [
+      'Built a full-stack system that turns resumes into structured data and generates targeted variants with traceable history.',
+      'Handled the UI, storage, rendering service, and billing workflow as one coherent product system.'
+    ]
+  },
+  {
+    title: 'Self-hosted AI development infrastructure',
+    detail: 'Linux, Docker, Cloudflare Zero Trust, local + hosted LLM tooling',
+    bullets: [
+      'Run a self-hosted environment for building agents, internal APIs, and experimental automation systems.',
+      'Use secure remote-access patterns and containerized services instead of exposing a pile of brittle public ports.'
+    ]
+  }
+];
 ---
 
 <BaseLayout title="Resume - hellointernet.lol">
-  <div class="content-block cg-text-slab">
-    <header class="resume-header">
-      <h1>Resume</h1>
-      <div class="resume-meta">
-        <span>Last updated: January 2026</span>
-      </div>
-    </header>
-
-    <section class="resume-section">
-      <h2>What I do</h2>
+  <div class="page-shell">
+    <section class="cg-panel page-hero">
+      <div class="cg-kicker">public resume</div>
+      <h1>Joshua Harper</h1>
       <p>
-        I build systems that reduce complexity and make progress obvious.
-        This usually means automation and software, but often includes
-        process design, tooling decisions, and decision support.
+        Applied AI engineer with a bias toward shipped systems: Python backends, TypeScript product work,
+        agent workflows, automation infrastructure, and the glue between ideas and something that actually runs.
       </p>
-      <p>
-        I focus on production systems that actually run; not demos,
-        decks, or experiments that never leave the lab.
-      </p>
-    </section>
-
-    <section class="resume-section">
-      <h2>Experience</h2>
-
-      <div class="experience-item">
-        <div class="experience-header">
-          <h3>AI Sales Specialist (Contract) - HighlandTech</h3>
-          <span class="experience-period">Dec 2025 - Present | Remote</span>
-        </div>
-        <p>
-          Work directly with organizations to identify practical, high-ROI
-          opportunities for AI automation.
-        </p>
-        <p>
-          Focus on understanding current operational constraints, defining
-          realistic future-state workflows, and guiding decision-makers toward
-          scoped initiatives that can be executed with existing teams and budgets.
-        </p>
-        <p>
-          Emphasis on clarity over hype, and on aligning AI solutions to measurable
-          business outcomes rather than tool adoption.
-        </p>
-      </div>
-
-      <div class="experience-item">
-        <div class="experience-header">
-          <h3>Founder - Fully Automated Enterprises LLC</h3>
-          <span class="experience-period">Nov 2024 - Present | Remote</span>
-        </div>
-        <p>
-          Founded and operate an experimental studio exploring autonomous,
-          AI-driven business systems.
-        </p>
-        <p>
-          Focused on research, prototyping, and internal experimentation around
-          automation, decision-making systems, and minimal-human operations.
-        </p>
-        <p>
-          Built internal tools and end-to-end automation pipelines spanning lead
-          capture, onboarding, support, and operational workflows using AI agents
-          and orchestration frameworks.
-        </p>
-        <p>
-          Developed a universal content-to-template engine for Word, HTML, and PDF
-          generation, enabling consistent, automated output across internal systems.
-        </p>
-        <p>
-          Not a consulting or services firm; Fully Automated Enterprises exists as
-          a sandbox for testing ideas, building internal tools, and studying the
-          economics of automation.
-        </p>
-      </div>
-
-      <div class="experience-item">
-        <div class="experience-header">
-          <h3>Technical Analyst - High Street Consulting LLC</h3>
-          <span class="experience-period">Oct 2022 - Apr 2025 | Remote</span>
-        </div>
-        <p>
-          Sole technical analyst supporting FEMA and DHS contracts and internal
-          operations.
-        </p>
-        <p>
-          Served as the Section 508 / accessibility SME on FEMA FQS projects,
-          led QA/QC training, enforced WCAG compliance, and managed Microsoft 365,
-          LMS platforms, WordPress infrastructure, and internal data systems.
-        </p>
-        <p>
-          Built VBA and Python automation tools that reduced FEMA FQS course
-          production time by approximately 60%. Co-developed a CrewAI-based
-          system for generating HSEEP-compliant exercise documentation and
-          after-action reports, later branded and expanded company-wide.
-        </p>
-        <p>
-          Engineered a FEMA API + Smartsheet ETL pipeline used for
-          North Carolina hurricane recovery dashboards.
-        </p>
-      </div>
-
-      <div class="experience-item">
-        <div class="experience-header">
-          <h3>IT Specialist -> Data Manager - University of Georgia</h3>
-          <span class="experience-period">Apr 2016 - Oct 2022 | Athens, GA</span>
-        </div>
-        <p>
-          Progressive technical roles supporting research, analytics, and
-          operational systems across multiple departments.
-        </p>
-        <p>
-          Oversaw integrity, accessibility, and lifecycle management of SQL and
-          MS Access databases containing large-scale analytical and client data.
-        </p>
-        <p>
-          Built automation to streamline QA/QC reporting, ISO audit preparation,
-          and open-records requests. Developed internal tools and scripts to reduce
-          manual reporting and improve data reliability.
-        </p>
-        <p>
-          Trained staff and interns on internal tools, data processes, technical
-          documentation standards, and accessibility best practices.
-        </p>
-      </div>
-
-      <div class="experience-item">
-        <div class="experience-header">
-          <h3>Foundational Roles - IT, Web, & Autonomous Systems</h3>
-          <span class="experience-period">2008 - 2016 | Georgia</span>
-        </div>
-        <p>
-          Early-career technical work spanning freelance IT support, small-business
-          web development, institutional IT environments, and applied research.
-        </p>
-        <p>
-          Provided freelance IT support and web development for individuals and
-          small organizations, including system setup, troubleshooting, website
-          builds, and ongoing maintenance.
-        </p>
-        <p>
-          Worked as Student IT at Athens Technical College, supporting campus
-          systems and assisting faculty and staff across networked and
-          hardware-based environments.
-        </p>
-        <p>
-          Interned with the University of Georgia's THINC autonomous robotics lab
-          (~2011), contributing to hands-on experimentation and applied research
-          involving autonomous systems.
-        </p>
+      <div class="cg-meta">
+        <span class="cg-status active">AI Engineer</span>
+        <span class="cg-status in-progress">updated May 2026</span>
+        <span>public version — contact directly for a role-specific PDF</span>
       </div>
     </section>
 
-    <section class="resume-section">
-      <h2>Capabilities</h2>
+    <section class="page-grid tight">
+      <article class="cg-card page-card">
+        <div class="cg-kicker">current lane</div>
+        <h2>Applied AI + full-stack product work</h2>
+        <p>Strongest where APIs, UI, automation, and platform decisions all collide in one deliverable.</p>
+      </article>
 
-      <div class="capabilities">
-        <div class="capability-category">
-          <h3>Automation & Systems</h3>
-          <p>
-            AI workflow design, multi-agent systems, process automation,
-            internal tooling, data pipelines
-          </p>
-        </div>
+      <article class="cg-card page-card">
+        <div class="cg-kicker">working stack</div>
+        <h2>Python, TypeScript, agents</h2>
+        <p>FastAPI, monorepos, Stencil/Angular, LLM integrations, MCP workflows, Linux, Docker, and pragmatic deployment glue.</p>
+      </article>
 
-        <div class="capability-category">
-          <h3>Languages & Platforms</h3>
-          <p>
-            Python, JavaScript/TypeScript, SQL, HTML/CSS,
-            automation platforms, Microsoft 365, WordPress
-          </p>
-        </div>
+      <article class="cg-card page-card">
+        <div class="cg-kicker">operating style</div>
+        <h2>Proof over posture</h2>
+        <p>I do well in environments that value independent execution, visible artifacts, and low ceremony over dashboard theater.</p>
+      </article>
+    </section>
 
-        <div class="capability-category">
-          <h3>Applied AI</h3>
-          <p>
-            LLM integration (cloud and local), CrewAI development,
-            prompt engineering, decision-support systems
-          </p>
-        </div>
+    <section class="cg-panel section-stack">
+      <div>
+        <div class="cg-kicker">experience</div>
+        <h2 class="section-title">Recent roles</h2>
+      </div>
 
-        <div class="capability-category">
-          <h3>Compliance & Operations</h3>
-          <p>
-            Section 508 / WCAG 2.2 accessibility, QA/QC, LMS administration,
-            documentation, audit support
-          </p>
-        </div>
-
-        <div class="capability-category">
-          <h3>Approach</h3>
-          <p>
-            Constraint identification, system design, rapid prototyping,
-            pragmatic tool selection, production focus
-          </p>
-        </div>
+      <div class="timeline">
+        {experience.map((item) => (
+          <article class="cg-card timeline-item">
+            <div class="timeline-header">
+              <h3>{item.role}</h3>
+              <span class="timeline-period">{item.period}</span>
+            </div>
+            <ul class="timeline-copy">
+              {item.bullets.map((bullet) => (
+                <li>{bullet}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
       </div>
     </section>
 
-    <section class="resume-section">
-      <h2>Education & Notes</h2>
-      <p>
-        A.A.S., Network & System Administration - Athens Technical College
-      </p>
-      <p>
-        Emergency Medical Technician (Intermediate) - Athens Technical College
-      </p>
-      <p>
-        Public Trust clearance (previously held).
-      </p>
+    <section class="page-grid">
+      {systems.map((system) => (
+        <article class="cg-card page-card">
+          <div class="cg-kicker">selected system</div>
+          <h2>{system.title}</h2>
+          <p class="muted-note">{system.detail}</p>
+          <ul class="detail-list">
+            {system.bullets.map((bullet) => (
+              <li>{bullet}</li>
+            ))}
+          </ul>
+        </article>
+      ))}
     </section>
 
-    <section class="resume-section">
-      <h2>Contact</h2>
-      <p>
-        <a href="mailto:joshua@fullyautomated.enterprises">joshua@fullyautomated.enterprises</a>
-      </p>
+    <section class="page-grid tight">
+      <article class="cg-card page-card">
+        <div class="cg-kicker">capabilities</div>
+        <h2>Core tools</h2>
+        <ul class="bullet-list">
+          <li>Python, FastAPI, SQL, REST APIs, PostgreSQL, Redis</li>
+          <li>TypeScript, Next.js, Angular, Stencil, Nx, HTML/CSS</li>
+          <li>LLM integrations, agent workflows, MCP tooling, automation design</li>
+        </ul>
+      </article>
+
+      <article class="cg-card page-card">
+        <div class="cg-kicker">ops + quality</div>
+        <h2>Infrastructure and reliability</h2>
+        <ul class="bullet-list">
+          <li>Linux, Docker, lightweight deployment workflows, Cloudflare Zero Trust</li>
+          <li>Accessibility / Section 508 / WCAG review and QA/QC process design</li>
+          <li>Documentation, stakeholder translation, and system cleanup</li>
+        </ul>
+      </article>
+
+      <article class="cg-card page-card">
+        <div class="cg-kicker">education</div>
+        <h2>Formal background</h2>
+        <ul class="bullet-list">
+          <li>A.A.S., Network and System Administration — Athens Technical College</li>
+          <li>Previously held Public Trust clearance</li>
+          <li>Long tail of hands-on IT, data, web, and systems work behind the current AI layer</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="cg-panel section-stack">
+      <div>
+        <div class="cg-kicker">contact</div>
+        <h2 class="section-title">Need the targeted version?</h2>
+        <p>For live opportunities, I can send a role-specific PDF instead of making the public page carry every possible variation.</p>
+      </div>
+      <div class="cg-list">
+        <a class="cg-command" href="mailto:joshua@fullyautomated.enterprises">
+          <span>$ contact</span>
+          <span>joshua@fullyautomated.enterprises</span>
+        </a>
+        <a class="cg-command" href="https://github.com/JH427" target="_blank" rel="noopener noreferrer">
+          <span>$ inspect</span>
+          <span>github.com/JH427</span>
+        </a>
+        <a class="cg-command" href="https://www.linkedin.com/in/joshua-harper" target="_blank" rel="noopener noreferrer">
+          <span>$ connect</span>
+          <span>linkedin.com/in/joshua-harper</span>
+        </a>
+      </div>
     </section>
   </div>
 </BaseLayout>
-
-<style>
-  .content-block {
-    max-width: 65ch;
-  }
-
-  .resume-header {
-    margin-bottom: 3rem;
-  }
-
-  .resume-header h1 {
-    margin-bottom: 0.5rem;
-  }
-
-  .resume-meta {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.875rem;
-    color: var(--cg-text-2);
-  }
-
-  .resume-section {
-    margin-bottom: 3rem;
-  }
-
-  .resume-section h2 {
-    margin-bottom: 1.5rem;
-    font-size: 1.25rem;
-  }
-
-  .resume-section p {
-    color: var(--cg-text-2);
-    font-size: 1rem;
-    line-height: 1.6;
-  }
-
-  .experience-item {
-    margin-bottom: 2rem;
-  }
-
-  .experience-item:last-child {
-    margin-bottom: 0;
-  }
-
-  .experience-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 0.5rem;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .experience-header h3 {
-    font-size: 1.125rem;
-    font-weight: 500;
-    margin: 0;
-  }
-
-  .experience-period {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.875rem;
-    color: var(--cg-text-2);
-  }
-
-  .experience-item p {
-    margin: 0;
-  }
-
-  .capabilities {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .capability-category h3 {
-    font-size: 1rem;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-  }
-
-  .capability-category p {
-    margin: 0;
-    font-size: 0.9375rem;
-  }
-</style>
