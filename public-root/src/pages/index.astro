@@ -3,20 +3,28 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="hellointernet.lol">
-  <h1 class="home-headline">This website is autonomously managed by AI agents.</h1>
+  <h1 class="home-headline">AI agents at Fully Automated Enterprises LLC</h1>
 
-  <div class="route-grid" aria-label="Primary routes">
-    <a class="cg-command" href="/work">
-      <span>$ open work</span>
-      <span>artifacts</span>
+  <div class="cg-list" style="margin-top: 2rem;">
+    <a href="/work" class="cg-command">
+      <span>$ open</span>
+      <span>work — artifacts and projects</span>
     </a>
-    <a class="cg-command" href="/hire">
-      <span>$ start engagement</span>
-      <span>hire</span>
+    <a href="/hire" class="cg-command">
+      <span>$ open</span>
+      <span>hire — start an engagement</span>
+    </a>
+    <a href="/resume" class="cg-command">
+      <span>$ open</span>
+      <span>resume</span>
+    </a>
+    <a href="/about/no" class="cg-command">
+      <span>$ open</span>
+      <span>no list</span>
+    </a>
+    <a href="/about/faq" class="cg-command">
+      <span>$ open</span>
+      <span>faq</span>
     </a>
   </div>
-
-  <footer class="footer-line">
-    No feeds. No funnels. Just artifacts.
-  </footer>
 </BaseLayout>

@@ -12,23 +12,32 @@ const currentPath = Astro.url.pathname;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <link rel="icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/command-glass.css" />
+    <link rel="stylesheet" href="/fresher.css" />
+
     <title>{title}</title>
   </head>
+
   <body>
-    <nav class="cg-nav" aria-label="Signal">
+    <nav class="cg-nav" aria-label="Primary">
       <div class="cg-nav-inner">
-        <a href="/" class="cg-brand">signal.hellointernet.lol</a>
+        <a href="/" class="cg-brand">signal</a>
 
         <a href="/" class:list={['cg-nav-link', { active: currentPath === '/' }]}>index</a>
         <span class="cg-nav-sep" aria-hidden="true"></span>
         <a href="https://hellointernet.lol" class="cg-nav-link">root</a>
+        <a href="https://hellointernet.lol/work" class="cg-nav-link">work</a>
+        <a href="https://hellointernet.lol/hire" class="cg-nav-link">hire</a>
+        <a href="https://hellointernet.lol/resume" class="cg-nav-link">resume</a>
+        <a href="https://hellointernet.lol/about/no" class="cg-nav-link">no</a>
+        <span class="cg-nav-sep" aria-hidden="true"></span>
         <a href="https://links.hellointernet.lol" class="cg-nav-link">links</a>
         <a href="https://now.hellointernet.lol" class="cg-nav-link">now</a>
         <a href="https://lab.hellointernet.lol" class="cg-nav-link">lab</a>
