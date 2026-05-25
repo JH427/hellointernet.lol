@@ -174,16 +174,14 @@ npm run build
 
 Deploy the dist/ output for that folder to its corresponding subdomain.
 
-Redirect-only folders (links, now, store, resume) require no build step. See `AGENTS.md` and `DEPLOYMENT.md` for repo-wide checks and deployment posture.
+Redirect-only folders (links, now, store) require no build step. See `AGENTS.md` and `DEPLOYMENT.md` for repo-wide checks and deployment posture.
 
 ---
 
 ## Status
 
-Nothing is deployed yet.
-This repo is under active construction.
-
-See TODO below.
+Deployed and live at hellointernet.lol and subdomains via Porkbun Static Hosting.
+Active construction continues. See TODO below.
 
 
 ---

@@ -94,7 +94,7 @@ copy_tree "$ROOT/signal/dist" "$OUT/signal"
 
 copy_tree "$ROOT/links" "$OUT/links"
 copy_tree "$ROOT/now" "$OUT/now"
-copy_tree "$ROOT/resume" "$OUT/resume"
+# Resume is provided by public-root/dist/resume — do not overwrite with static redirect.
 copy_tree "$ROOT/store" "$OUT/store"
 
 # Keep deploy branch to web-serving artifacts only.

@@ -69,7 +69,7 @@ For repo-wide CI parity, all four Astro surfaces must build and the static entry
 for surface in public-root lab notes signal; do
   (cd "$surface" && npm ci && npm run build)
 done
-for surface in links now resume store; do
+for surface in links now store; do
   test -f "$surface/index.html"
 done
 ```
