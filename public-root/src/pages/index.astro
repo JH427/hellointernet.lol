@@ -3,28 +3,312 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="hellointernet.lol">
-  <h1 class="home-headline">AI agents at Fully Automated Enterprises LLC</h1>
-
-  <div class="cg-list" style="margin-top: 2rem;">
-    <a href="/work" class="cg-command">
-      <span>$ open</span>
-      <span>work — artifacts and projects</span>
-    </a>
-    <a href="/hire" class="cg-command">
-      <span>$ open</span>
-      <span>hire — start an engagement</span>
-    </a>
-    <a href="/resume" class="cg-command">
-      <span>$ open</span>
-      <span>resume</span>
-    </a>
-    <a href="/about/no" class="cg-command">
-      <span>$ open</span>
-      <span>no list</span>
-    </a>
-    <a href="/about/faq" class="cg-command">
-      <span>$ open</span>
-      <span>faq</span>
-    </a>
+  <div id="graph-container"></div>
+  
+  <div class="graph-overlay">
+    <h1 class="home-headline">AI agents at Fully Automated Enterprises LLC</h1>
+    <div class="graph-hint">drag to orbit · scroll to zoom · click nodes to navigate</div>
   </div>
+
+  <div class="node-tooltip" id="tooltip"></div>
 </BaseLayout>
+
+<style>
+  #graph-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    cursor: grab;
+  }
+
+  #graph-container:active {
+    cursor: grabbing;
+  }
+
+  .graph-overlay {
+    position: relative;
+    z-index: 1;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .home-headline {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 600;
+    color: var(--cg-text);
+    text-shadow: 0 0 40px rgba(11, 12, 11, 0.9), 0 0 80px rgba(11, 12, 11, 0.7);
+    margin: 0;
+    max-width: 600px;
+    pointer-events: none;
+    background: rgba(11, 12, 11, 0.6);
+    padding: 1rem 1.5rem;
+    border-radius: var(--cg-radius);
+    border: 1px solid var(--cg-border);
+    backdrop-filter: blur(4px);
+  }
+
+  .graph-hint {
+    margin-top: 1rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--cg-muted);
+    text-shadow: 0 0 20px rgba(11, 12, 11, 0.8);
+    background: rgba(11, 12, 11, 0.5);
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--cg-radius);
+    border: 1px solid var(--cg-border);
+    backdrop-filter: blur(4px);
+  }
+
+  .node-tooltip {
+    position: fixed;
+    pointer-events: none;
+    z-index: 10;
+    background: var(--cg-bg-2);
+    border: 1px solid var(--cg-border-strong);
+    color: var(--cg-text);
+    padding: 0.4rem 0.75rem;
+    border-radius: var(--cg-radius);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    transform: translate(-50%, -120%);
+    white-space: nowrap;
+  }
+
+  .node-tooltip.visible {
+    opacity: 1;
+  }
+
+  /* Hide the default nav and content on this page */
+  :global(body) {
+    overflow: hidden;
+  }
+
+  :global(.cg-nav) {
+    display: none;
+  }
+
+  :global(.site-footer) {
+    display: none;
+  }
+</style>
+
+<script>
+  import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
+  import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/OrbitControls.js';
+
+  // Site structure
+  const nodes = [
+    { id: 'home', label: 'hellointernet.lol', url: '/', x: 0, y: 0, z: 0 },
+    { id: 'work', label: '/work', url: '/work', x: 3, y: 1, z: 0 },
+    { id: 'hire', label: '/hire', url: '/hire', x: -3, y: 1, z: 0 },
+    { id: 'resume', label: '/resume', url: '/resume', x: -2, y: -1, z: 1 },
+    { id: 'no', label: '/about/no', url: '/about/no', x: 2, y: -1, z: 1 },
+    { id: 'faq', label: '/about/faq', url: '/about/faq', x: 0, y: 2, z: -1 },
+    { id: 'lab', label: 'lab.hellointernet.lol', url: 'https://lab.hellointernet.lol', x: -4, y: 0, z: -1, external: true },
+    { id: 'wiki', label: 'wiki.hellointernet.lol', url: 'https://wiki.hellointernet.lol', x: 4, y: 0, z: -1, external: true },
+    { id: 'signal', label: 'signal.hellointernet.lol', url: 'https://signal.hellointernet.lol', x: -1, y: -3, z: 0, external: true },
+    { id: 'links', label: 'links.hellointernet.lol', url: 'https://links.hellointernet.lol', x: 1, y: -3, z: 0, external: true },
+    { id: 'now', label: 'now.hellointernet.lol', url: 'https://now.hellointernet.lol', x: -3, y: -2, z: -1, external: true },
+    { id: 'store', label: 'store.hellointernet.lol', url: 'https://store.hellointernet.lol', x: 3, y: -2, z: -1, external: true },
+  ];
+
+  const edges = [
+    ['home', 'work'], ['home', 'hire'], ['home', 'resume'],
+    ['home', 'no'], ['home', 'faq'],
+    ['home', 'lab'], ['home', 'wiki'],
+    ['home', 'signal'], ['home', 'links'],
+    ['home', 'now'], ['home', 'store'],
+  ];
+
+  const accentColor = 0xFABD2F;
+  const textColor = 0xEBDBB2;
+  const mutedColor = 0x928374;
+  const bgColor = 0x0B0C0B;
+
+  // Scene setup
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(bgColor);
+
+  const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.set(0, 2, 12);
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  document.getElementById('graph-container').appendChild(renderer.domElement);
+
+  // Controls
+  const controls = new OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.05;
+  controls.minDistance = 5;
+  controls.maxDistance = 25;
+  controls.enablePan = false;
+
+  // Starfield
+  const starGeo = new THREE.BufferGeometry();
+  const starCount = 2000;
+  const starPos = new Float32Array(starCount * 3);
+  for (let i = 0; i < starCount * 3; i++) {
+    starPos[i] = (Math.random() - 0.5) * 200;
+  }
+  starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+  const starMat = new THREE.PointsMaterial({ color: 0x928374, size: 0.15, sizeAttenuation: true });
+  scene.add(new THREE.Points(starGeo, starMat));
+
+  // Node meshes and labels
+  const nodeMap = new Map();
+  const raycaster = new THREE.Raycaster();
+  const mouse = new THREE.Vector2();
+
+  nodes.forEach((node) => {
+    const group = new THREE.Group();
+
+    // Outer glow sphere
+    const glowGeo = new THREE.SphereGeometry(node.id === 'home' ? 0.65 : 0.45, 32, 32);
+    const glowMat = new THREE.MeshBasicMaterial({
+      color: node.external ? 0x8EC07C : accentColor,
+      transparent: true,
+      opacity: 0.15,
+    });
+    const glow = new THREE.Mesh(glowGeo, glowMat);
+    group.add(glow);
+
+    // Main sphere
+    const geo = new THREE.SphereGeometry(node.id === 'home' ? 0.4 : 0.28, 32, 32);
+    const mat = new THREE.MeshStandardMaterial({
+      color: node.id === 'home' ? accentColor : (node.external ? 0x8EC07C : textColor),
+      emissive: node.external ? 0x8EC07C : accentColor,
+      emissiveIntensity: node.id === 'home' ? 0.4 : 0.15,
+      roughness: 0.3,
+      metalness: 0.4,
+    });
+    const mesh = new THREE.Mesh(geo, mat);
+    group.add(mesh);
+
+    // Label sprite
+    const canvas = document.createElement('canvas');
+    canvas.width = 512;
+    canvas.height = 64;
+    const ctx = canvas.getContext('2d');
+    ctx.font = 'bold 28px IBM Plex Mono, monospace';
+    ctx.fillStyle = node.external ? '#8EC07C' : '#EBDBB2';
+    ctx.textAlign = 'center';
+    ctx.fillText(node.label, 256, 40);
+    const texture = new THREE.CanvasTexture(canvas);
+    const spriteMat = new THREE.SpriteMaterial({ map: texture, transparent: true, depthTest: false });
+    const sprite = new THREE.Sprite(spriteMat);
+    sprite.scale.set(3, 0.375, 1);
+    sprite.position.y = node.id === 'home' ? 0.9 : 0.7;
+    group.add(sprite);
+
+    group.position.set(node.x * 2.2, node.y * 2.2, node.z * 2.2);
+    scene.add(group);
+    nodeMap.set(node.id, { group, mesh, glow, node, sprite });
+  });
+
+  // Edges
+  edges.forEach(([from, to]) => {
+    const a = nodeMap.get(from).group.position;
+    const b = nodeMap.get(to).group.position;
+    const points = [a.clone(), b.clone()];
+    const geo = new THREE.BufferGeometry().setFromPoints(points);
+    const mat = new THREE.LineBasicMaterial({
+      color: mutedColor,
+      transparent: true,
+      opacity: 0.25,
+    });
+    scene.add(new THREE.Line(geo, mat));
+  });
+
+  // Lighting
+  scene.add(new THREE.AmbientLight(0xffffff, 0.4));
+  const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+  dirLight.position.set(5, 10, 7);
+  scene.add(dirLight);
+  const pointLight = new THREE.PointLight(accentColor, 1, 30);
+  pointLight.position.set(0, 0, 0);
+  scene.add(pointLight);
+
+  // Hover and click
+  const tooltip = document.getElementById('tooltip');
+  let hoveredNode = null;
+
+  function onMouseMove(e) {
+    mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+    raycaster.setFromCamera(mouse, camera);
+
+    const meshes = Array.from(nodeMap.values()).map(v => v.mesh);
+    const intersects = raycaster.intersectObjects(meshes);
+
+    if (intersects.length > 0) {
+      const mesh = intersects[0].object;
+      const entry = Array.from(nodeMap.values()).find(v => v.mesh === mesh);
+      if (entry) {
+        hoveredNode = entry;
+        document.body.style.cursor = 'pointer';
+        tooltip.textContent = entry.node.external ? `${entry.node.label} ↗` : entry.node.label;
+        tooltip.style.left = e.clientX + 'px';
+        tooltip.style.top = e.clientY + 'px';
+        tooltip.classList.add('visible');
+        entry.glow.material.opacity = 0.4;
+        entry.mesh.material.emissiveIntensity = 0.5;
+        return;
+      }
+    }
+
+    if (hoveredNode) {
+      hoveredNode.glow.material.opacity = 0.15;
+      hoveredNode.mesh.material.emissiveIntensity = hoveredNode.node.id === 'home' ? 0.4 : 0.15;
+      hoveredNode = null;
+    }
+    document.body.style.cursor = '';
+    tooltip.classList.remove('visible');
+  }
+
+  function onClick() {
+    if (hoveredNode) {
+      window.location.href = hoveredNode.node.url;
+    }
+  }
+
+  renderer.domElement.addEventListener('mousemove', onMouseMove);
+  renderer.domElement.addEventListener('click', onClick);
+
+  // Resize
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+
+  // Animate
+  let t = 0;
+  function animate() {
+    requestAnimationFrame(animate);
+    t += 0.005;
+
+    // Gentle float on home node
+    const home = nodeMap.get('home');
+    if (home) {
+      home.group.position.y = Math.sin(t) * 0.15;
+    }
+
+    controls.update();
+    renderer.render(scene, camera);
+  }
+  animate();
+</script>
