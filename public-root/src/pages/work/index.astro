@@ -7,17 +7,16 @@ const sortedArtifacts = artifacts.sort((a, b) => b.data.id.localeCompare(a.data.
 ---
 
 <BaseLayout title="Work - hellointernet.lol">
-  <div class="work-index cg-stack">
-    <header class="cg-panel">
-      <div class="cg-kicker">artifact registry</div>
+  <div class="cg-stack">
+    <header class="page-header">
       <h1>Artifacts</h1>
       <p>Proof over posture. Work that made a constraint visible, smaller, or gone.</p>
     </header>
 
-    <div class="artifact-list cg-list">
+    <div class="cg-list">
       {sortedArtifacts.map((artifact) => (
-        <a href={`/work/${artifact.data.id}`} class="artifact-item cg-card cg-card-link">
-          <div class="artifact-meta cg-meta">
+        <a href={`/work/${artifact.data.id}`} class="artifact-item">
+          <div class="artifact-meta">
             <span>{artifact.data.id}</span>
             <span class="cg-status">{artifact.data.status}</span>
           </div>
@@ -27,14 +26,3 @@ const sortedArtifacts = artifacts.sort((a, b) => b.data.id.localeCompare(a.data.
     </div>
   </div>
 </BaseLayout>
-
-<style>
-  .work-index {
-    max-width: 820px;
-  }
-
-  .artifact-title {
-    margin: 0.7rem 0 0;
-    font-size: 1.18rem;
-  }
-</style>

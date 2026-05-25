@@ -15,14 +15,14 @@ const { Content } = await artifact.render();
 ---
 
 <BaseLayout title={`${artifact.data.title} - hellointernet.lol`}>
-  <article class="artifact-detail cg-text-slab">
-    <div class="artifact-header">
-      <div class="artifact-meta cg-meta">
+  <article class="artifact-detail">
+    <header class="artifact-header">
+      <div class="artifact-meta">
         <span class="artifact-id">{artifact.data.id}</span>
         <span class="cg-status">{artifact.data.status}</span>
       </div>
       <h1>{artifact.data.title}</h1>
-    </div>
+    </header>
 
     <div class="artifact-content">
       <Content />
@@ -44,9 +44,18 @@ const { Content } = await artifact.render();
 </BaseLayout>
 
 <style>
-  .artifact-detail h1 {
+  .artifact-detail {
+    max-width: none;
+  }
+
+  .artifact-header {
+    margin-bottom: 2rem;
+  }
+
+  .artifact-header h1 {
     margin-top: 0.75rem;
     font-size: clamp(2rem, 6vw, 3.7rem);
+    margin-bottom: 0;
   }
 
   .artifact-content {
@@ -58,16 +67,21 @@ const { Content } = await artifact.render();
     color: var(--cg-text-2);
   }
 
-  .artifact-link,
-  .back-link {
+  .artifact-link {
     margin-top: 2rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--cg-border);
+  }
+
+  .back-link {
+    margin-top: 2.5rem;
   }
 
   .back-link a {
     color: var(--cg-muted);
     text-decoration: none;
-    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.9rem;
+  }
+
+  .back-link a:hover {
+    color: var(--cg-yellow);
   }
 </style>

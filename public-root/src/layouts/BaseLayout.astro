@@ -1,10 +1,9 @@
 ---
 interface Props {
   title?: string;
-  showNav?: boolean;
 }
 
-const { title = 'hellointernet.lol', showNav = true } = Astro.props;
+const { title = 'hellointernet.lol' } = Astro.props;
 const currentPath = Astro.url.pathname;
 ---
 
@@ -30,42 +29,31 @@ const currentPath = Astro.url.pathname;
   </head>
 
   <body>
-    {showNav && (
-      <nav class="cg-nav" aria-label="Primary">
-        <div class="cg-nav-inner">
-          <a href="/" class="cg-brand">hellointernet.lol</a>
+    <nav class="cg-nav" aria-label="Primary">
+      <div class="cg-nav-inner">
+        <a href="/" class="cg-brand">hellointernet.lol</a>
 
-          <div class="cg-nav-group">
-            <span class="cg-nav-label">Work</span>
-            <a href="/work" class:list={['cg-nav-link', { active: currentPath.startsWith('/work') }]}>work</a>
-            <a href="/hire" class:list={['cg-nav-link', { active: currentPath === '/hire' }]}>work with me</a>
-          </div>
-
-          <div class="cg-nav-group">
-            <span class="cg-nav-label">Info</span>
-            <a href="/resume" class:list={['cg-nav-link', { active: currentPath === '/resume' }]}>resume</a>
-            <a href="/about/no" class:list={['cg-nav-link', { active: currentPath === '/about/no' }]}>no list</a>
-            <a href="/about/faq" class:list={['cg-nav-link', { active: currentPath === '/about/faq' }]}>faq</a>
-          </div>
-
-          <div class="cg-nav-group">
-            <span class="cg-nav-label">Surfaces</span>
-            <a href="https://links.hellointernet.lol" class="cg-nav-link">links</a>
-            <a href="https://now.hellointernet.lol" class="cg-nav-link">now</a>
-            <a href="https://lab.hellointernet.lol" class="cg-nav-link">lab</a>
-            <a href="https://signal.hellointernet.lol" class="cg-nav-link">signal</a>
-            <a href="https://wiki.hellointernet.lol" class="cg-nav-link">wiki</a>
-          </div>
-        </div>
-      </nav>
-    )}
+        <a href="/work" class:list={['cg-nav-link', { active: currentPath.startsWith('/work') }]}>work</a>
+        <a href="/hire" class:list={['cg-nav-link', { active: currentPath === '/hire' }]}>work with me</a>
+        <span class="cg-nav-sep" aria-hidden="true"></span>
+        <a href="/resume" class:list={['cg-nav-link', { active: currentPath === '/resume' }]}>resume</a>
+        <a href="/about/no" class:list={['cg-nav-link', { active: currentPath === '/about/no' }]}>no list</a>
+        <a href="/about/faq" class:list={['cg-nav-link', { active: currentPath === '/about/faq' }]}>faq</a>
+        <span class="cg-nav-sep" aria-hidden="true"></span>
+        <a href="https://links.hellointernet.lol" class="cg-nav-link">links</a>
+        <a href="https://now.hellointernet.lol" class="cg-nav-link">now</a>
+        <a href="https://lab.hellointernet.lol" class="cg-nav-link">lab</a>
+        <a href="https://signal.hellointernet.lol" class="cg-nav-link">signal</a>
+        <a href="https://wiki.hellointernet.lol" class="cg-nav-link">wiki</a>
+      </div>
+    </nav>
 
     <main class="cg-main">
       <slot />
     </main>
 
-    <footer class="site-version">
-      <a href="https://github.com/JH427/hellointernet.lol" target="_blank" rel="noopener noreferrer">v0.1</a>
+    <footer class="site-footer">
+      Fully Automated Enterprises LLC 2026
     </footer>
   </body>
 </html>

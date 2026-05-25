@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="No List - hellointernet.lol">
-  <div class="content-block cg-text-slab">
+  <div class="no-content">
     <h1>No List</h1>
 
     <div class="intro">
@@ -27,10 +27,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 </BaseLayout>
 
 <style>
-  .content-block {
-    max-width: 65ch;
-  }
-
   h1 {
     margin-bottom: 2rem;
   }
@@ -43,6 +39,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
   .intro p {
     margin-bottom: 0.5rem;
+    color: var(--cg-text-2);
   }
 
   .list {
@@ -75,10 +72,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     padding-top: 2rem;
     border-top: 1px solid var(--cg-border);
     font-size: 1rem;
-    color: var(--cg-text-2);
   }
 
   .closing p {
     margin: 0;
+    color: var(--cg-text-2);
   }
 </style>

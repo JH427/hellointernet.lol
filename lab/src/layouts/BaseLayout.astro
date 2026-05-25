@@ -12,6 +12,9 @@ const currentPath = Astro.url.pathname;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -22,15 +25,23 @@ const currentPath = Astro.url.pathname;
     <nav class="cg-nav" aria-label="Lab">
       <div class="cg-nav-inner">
         <a href="/" class="cg-brand">lab.hellointernet.lol</a>
-        <div class="cg-nav-group">
-          <span class="cg-nav-label">Surface</span>
-          <a href="/" class:list={['cg-nav-link', { active: currentPath === '/' || currentPath.startsWith('/experiments') }]}>experiments</a>
-          <a href="https://hellointernet.lol" class="cg-nav-link">root</a>
-        </div>
+
+        <a href="/work" class:list={['cg-nav-link', { active: currentPath.startsWith('/work') || currentPath === '/' }]}>experiments</a>
+        <span class="cg-nav-sep" aria-hidden="true"></span>
+        <a href="https://hellointernet.lol" class="cg-nav-link">root</a>
+        <a href="https://links.hellointernet.lol" class="cg-nav-link">links</a>
+        <a href="https://now.hellointernet.lol" class="cg-nav-link">now</a>
+        <a href="https://signal.hellointernet.lol" class="cg-nav-link">signal</a>
+        <a href="https://wiki.hellointernet.lol" class="cg-nav-link">wiki</a>
       </div>
     </nav>
+
     <main class="cg-main">
       <slot />
     </main>
+
+    <footer class="site-footer">
+      Fully Automated Enterprises LLC 2026
+    </footer>
   </body>
 </html>

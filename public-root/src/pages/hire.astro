@@ -3,77 +3,74 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="Work with me - hellointernet.lol">
-  <div class="content-block cg-text-slab">
+  <div class="hire-content">
     <h1>Work with me</h1>
 
-    <div class="content">
-      <p>I work with people who recognize friction and want it removed.</p>
-      <p><em>Not managed.</em></p>
-      <p><strong>Gone.</strong></p>
+    <p>I work with people who recognize friction and want it removed.</p>
+    <p><em>Not managed.</em></p>
+    <p><strong>Gone.</strong></p>
 
-      <p>
-        This usually starts with something that’s slowing you down:
-        <ul>
-          <li>a messy process, a missing tool</li>
-          <li>a decision that needs structure</li>
-          <li>a system that’s quietly blocking progress</li>
-        </ul>
-      </p>
+    <p>
+      This usually starts with something that's slowing you down:
+    </p>
+    <ul>
+      <li>a messy process, a missing tool</li>
+      <li>a decision that needs structure</li>
+      <li>a system that's quietly blocking progress</li>
+    </ul>
 
-      <p>
-        I help by building the thing that removes the constraint,
-        then stepping back.
-      </p>
+    <p>
+      I help by building the thing that removes the constraint,
+      then stepping back.
+    </p>
 
-      <h2>Good fit if</h2>
+    <h2>Good fit if</h2>
 
-      <ul>
-        <li>You have a real problem, but the solution isn’t obvious</li>
-        <li>You need something built that doesn’t fit a standard template</li>
-        <li>You’re tired of tools that create more work than they solve</li>
-        <li>You have the authority to decide and the urgency to move</li>
-      </ul>
+    <ul>
+      <li>You have a real problem, but the solution isn't obvious</li>
+      <li>You need something built that doesn't fit a standard template</li>
+      <li>You're tired of tools that create more work than they solve</li>
+      <li>You have the authority to decide and the urgency to move</li>
+    </ul>
 
-      <h2>Not a fit if</h2>
+    <h2>Not a fit if</h2>
 
-      <ul>
-        <li>You want long discovery processes with no output</li>
-        <li>You’re shopping for tools without a clear problem</li>
-        <li>The work requires endless alignment meetings</li>
-        <li>“Building” means talking about building</li>
-      </ul>
+    <ul>
+      <li>You want long discovery processes with no output</li>
+      <li>You're shopping for tools without a clear problem</li>
+      <li>The work requires endless alignment meetings</li>
+      <li>"Building" means talking about building</li>
+    </ul>
 
-      <h2>How to start</h2>
+    <h2>How to start</h2>
 
-      <p>
-        Send an email that includes:
-      </p>
+    <p>
+      Send an email that includes:
+    </p>
 
-      <ul>
-        <li>What’s not working</li>
-        <li>What good looks like</li>
-        <li>When you need it by</li>
-      </ul>
+    <ul>
+      <li>What's not working</li>
+      <li>What good looks like</li>
+      <li>When you need it by</li>
+    </ul>
 
-      <p>
-        If it’s a fit, we’ll talk.
-        If it’s not, I’ll tell you quickly.
-      </p>
+    <p>
+      If it's a fit, we'll talk.
+      If it's not, I'll tell you quickly.
+    </p>
 
-      <div class="contact">
-        <a class="cg-command" href="mailto:joshua@fullyautomated.enterprises">
-          <span>$ contact</span>
-          <span>joshua@fullyautomated.enterprises</span>
-        </a>
-      </div>
+    <div class="contact">
+      <a class="cg-command" href="mailto:joshua@fullyautomated.enterprises">
+        <span>$ contact</span>
+        <span>joshua@fullyautomated.enterprises</span>
+      </a>
     </div>
   </div>
 </BaseLayout>
 
-
 <style>
-  .content-block {
-    max-width: 65ch;
+  .hire-content {
+    max-width: none;
   }
 
   h1 {
@@ -86,24 +83,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     font-size: 1.25rem;
   }
 
-  .content {
+  .hire-content > p,
+  .hire-content > ul {
     color: var(--cg-text-2);
     font-size: 1.0625rem;
     line-height: 1.6;
   }
 
-  .content p {
-    margin-bottom: 1.25rem;
-  }
-
-  .content ul {
+  .hire-content ul {
     margin: 1rem 0 1.5rem 1.5rem;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
   }
 
-  .content li {
+  .hire-content li {
     line-height: 1.6;
   }
 
@@ -115,9 +109,5 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .contact .cg-command {
     flex-wrap: wrap;
-  }
-
-  .contact .cg-command span:last-child {
-    overflow-wrap: anywhere;
   }
 </style>
