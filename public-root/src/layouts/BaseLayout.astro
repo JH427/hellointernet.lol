@@ -34,10 +34,10 @@ const currentPath = Astro.url.pathname;
         <a href="/" class="cg-brand">hellointernet.lol</a>
 
         <a href="/work" class:list={['cg-nav-link', { active: currentPath.startsWith('/work') }]}>work</a>
-        <a href="/hire" class:list={['cg-nav-link', { active: currentPath === '/hire' }]}>work with me</a>
+        <a href="/hire" class:list={['cg-nav-link', { active: currentPath === '/hire' }]}>hire</a>
         <span class="cg-nav-sep" aria-hidden="true"></span>
         <a href="/resume" class:list={['cg-nav-link', { active: currentPath === '/resume' }]}>resume</a>
-        <a href="/about/no" class:list={['cg-nav-link', { active: currentPath === '/about/no' }]}>no list</a>
+        <a href="/about/no" class:list={['cg-nav-link', { active: currentPath === '/about/no' }]}>no</a>
         <a href="/about/faq" class:list={['cg-nav-link', { active: currentPath === '/about/faq' }]}>faq</a>
         <span class="cg-nav-sep" aria-hidden="true"></span>
         <a href="https://links.hellointernet.lol" class="cg-nav-link">links</a>
