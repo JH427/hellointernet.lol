@@ -103,6 +103,39 @@ scripts/build-porkbun-deploy-tree.sh
 
 GitHub Actions workflow `.github/workflows/porkbun-deploy.yml` can publish this tree to `porkbun-deploy`.
 
+## Multiplexer root and required third-party assets
+
+The approved root is a full-width responsive terminal-only fictional multiplexer.
+All visible text uses the original Accelerando-8192 font and real 8,192-token
+vocabulary; English accessibility equivalents remain visually clipped. The
+native input uses a glyph mirror; token boundaries do not map to the native caret.
+Deeper Work/About/Contact and historical routes remain independently reachable.
+
+Publication was explicitly authorized after disclosure that the font's
+redistribution license is **UNKNOWN / UNRESOLVED**. This is not license clearance.
+The three required files in `public-root/public/local-glyph/` are committed so
+clean-clone builds require no withheld local assets. `THIRD_PARTY_NOTICES.txt`
+records upstream source, inspected revision and hashes, and separates the
+original font (no license grant found) from OpenAI tiktoken's MIT notice.
+No upstream song, images or specimen package is included. Do not apply the
+MIT notice to the original font or claim that rights have been cleared.
+
+Current acceptance commands (after assembling the tree):
+
+```sh
+node tests/multiplex-model.mjs
+node tests/built-output.mjs .porkbun-deploy
+python3 tests/check-links.py .porkbun-deploy
+node tests/multiplex-browser.mjs .porkbun-deploy
+# Fresh Chromium against actual public HTTPS, without starting a local server:
+TEST_BASE_URL=https://hellointernet.lol node tests/multiplex-browser.mjs
+```
+
+The browser-smoke, entrance-browser and passage-terminal entrypoints delegate to
+the current multiplexer suite, including responsive deeper-route checks. Use
+`SHARP_IGNORE_GLOBAL_LIBVIPS=1` on hosts whose system libvips conflicts with Sharp;
+keep the existing lockfiles and dependencies unchanged.
+
 ## Verification after deploy
 
 At minimum check:
