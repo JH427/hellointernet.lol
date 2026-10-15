@@ -1,28 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-
-const artifacts = await getCollection('artifacts');
-const sortedArtifacts = artifacts.sort((a, b) => b.data.id.localeCompare(a.data.id));
+import SelectedWork from '../../components/SelectedWork.astro';
+const artifacts = (await getCollection('artifacts')).sort((a,b)=>b.data.id.localeCompare(a.data.id));
 ---
-
-<BaseLayout title="Work - hellointernet.lol">
-  <div class="cg-stack">
-    <header class="page-header">
-      <h1>Artifacts</h1>
-      <p>Shipped systems, operating traces, and experiments that left a mark on reality.</p>
-    </header>
-
-    <div class="cg-list">
-      {sortedArtifacts.map((artifact) => (
-        <a href={`/work/${artifact.data.id}`} class="artifact-item">
-          <div class="artifact-meta">
-            <span>{artifact.data.id}</span>
-            <span class="cg-status">{artifact.data.status}</span>
-          </div>
-          <h3 class="artifact-title">{artifact.data.title}</h3>
-        </a>
-      ))}
-    </div>
-  </div>
-</BaseLayout>
+<BaseLayout title="Work — Joshua Harper"><header class="page-header"><p class="eyebrow">Code / tools / experiments</p><h1>Work, with the receipts.</h1><p>Public source is the starting point. These projects vary in maturity; the boundaries matter as much as the capabilities.</p><p class="muted-note">Documentation reviewed 14 October 2026. This is not a claim of production deployment or independent runtime validation.</p></header><SelectedWork />
+<section style="margin-top:60px"><div class="section-heading"><h2>Historical artifacts</h2><span>Original collection / 001—005</span></div><p>Earlier project notes, kept at their original URLs. Status labels and descriptions reflect the original entries, not a current maintenance commitment.</p><div class="cg-list">{artifacts.map(a=><a class="artifact-item" href={`/work/${a.data.id}/`}><span class="eyebrow">{a.data.id} / original note</span><h3 class="artifact-title">{a.data.title}</h3></a>)}</div></section></BaseLayout>

@@ -94,7 +94,9 @@ copy_tree "$ROOT/signal/dist" "$OUT/signal"
 
 copy_tree "$ROOT/links" "$OUT/links"
 copy_tree "$ROOT/now" "$OUT/now"
-copy_tree "$ROOT/contact" "$OUT/contact"
+# Contact, like resume, is canonical in public-root/dist. Keep the legacy
+# standalone contact/ source intact, but never overwrite the built root route.
+require_index "$OUT/contact"
 # Resume is provided by public-root/dist/resume — do not overwrite with static redirect.
 copy_tree "$ROOT/this" "$OUT/this"
 copy_tree "$ROOT/scratch" "$OUT/scratch"

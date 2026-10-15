@@ -21,7 +21,7 @@ Static/redirect surfaces:
 | --- | --- | --- |
 | Links | `links/` | none |
 | Now | `now/` | none |
-| Contact | `contact/` | none |
+| Contact | `public-root/src/pages/contact.astro` (canonical); `contact/` retained as legacy source | root Astro build |
 | Resume | `resume/` | none |
 | This | `this/` | none |
 | Scratch | `scratch/` | none |
@@ -38,7 +38,7 @@ Porkbun folder mappings configured by Joshua:
 | `wiki` | `/wiki` | `notes/dist/` |
 | `links` | `/links` | `links/` |
 | `now` | `/now` | `now/` |
-| `contact` | `/contact` | `contact/` |
+| `contact` | `/contact` | root Astro `/contact/`; legacy `contact/` is not copied over it |
 | `resume` | `/resume` | `resume/` |
 | `this` | `/this` | `this/` |
 | `scratch` | `/scratch` | `scratch/` |
@@ -87,7 +87,7 @@ The generated branch should use this layout:
   wiki/                      # from notes/dist/
   links/                     # from links/
   now/                       # from now/
-  contact/                   # from contact/
+  contact/                   # canonical route from public-root/dist/contact/
   resume/                    # from resume/
   this/                      # from this/
   scratch/                   # from scratch/
