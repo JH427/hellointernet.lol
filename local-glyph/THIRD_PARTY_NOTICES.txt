@@ -1,0 +1,43 @@
+Accelerando-8192 — original glyph font
+Author/source: gillverd, https://github.com/gillverd/accelerando-8192
+Upstream repository inspected at b1e789d50ce92af0ce142675d38da451d0c8d078.
+Font: accelerando-8192.ttf
+SHA-256: 4c1b5a2fb70dfd4f5930b95e8f48448035dc45ce7aced625944168cb2069f942
+
+FONT LICENSE: UNKNOWN / UNRESOLVED. No repository-wide license or explicit
+font redistribution grant was found in the inspected source/package; the
+font contains no license name records (IDs 13/14). Publication was explicitly
+requested after disclosure of this uncertainty. That authorization is not
+copyright clearance. All original font rights remain with their owner(s).
+The MIT notice below applies to tiktoken, NOT to this original font.
+
+Vocabulary: vocabulary.json, derived from upstream docs/data/alphabet.json;
+only base64 token bytes and pretokenization pattern are retained. No song,
+image, geometry, labels or specimen package is included.
+SHA-256: 4052a9de6011dc25b799fb0cdd05d3e3ad8c0b40e03a9c54873926bfff05d492
+Token ID maps directly to U+F0000 + ID. Application transcripts are original
+fiction, not the upstream song or real agent activity.
+
+OpenAI tiktoken — tokenizer vocabulary and pretokenization rules
+
+MIT License
+
+Copyright (c) 2022 OpenAI, Shantanu Jain
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
